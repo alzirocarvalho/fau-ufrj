@@ -9,20 +9,18 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg:       #f2f2f0;
-    --surface:  #e8e8e5;
-    --border:   #c8c8c4;
-    --muted:    #888884;
-    --body:     #2a2a28;
-    --ink:      #111110;
-    --accent:   #002FA7;   /* International Klein Blue */
-    --accent-light: #4D7FFF; /* Klein Blue claro — para fundos escuros */
+    --bg:      #f2f2f0;
+    --surface: #e8e8e5;
+    --border:  #c8c8c4;
+    --muted:   #888884;
+    --body:    #2a2a28;
+    --ink:     #111110;
+    --accent:  #002FA7;
     --mono: 'IBM Plex Mono', monospace;
     --sans: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--bg);
     color: var(--body);
@@ -32,551 +30,247 @@
     line-height: 1.72;
   }
 
-  /* ─── NAV ─── */
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: var(--ink);
-    height: 44px;
-    display: flex;
-    align-items: stretch;
-    border-bottom: 1px solid #222220;
+    background: var(--ink); height: 44px;
+    display: flex; align-items: stretch;
   }
   .nav-brand {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: #555;
-    padding: 0 24px;
-    display: flex; align-items: center;
-    border-right: 1px solid #222;
-    white-space: nowrap;
+    font-family: var(--mono); font-size: 9px; letter-spacing: .18em;
+    text-transform: uppercase; color: #444;
+    padding: 0 24px; display: flex; align-items: center;
+    border-right: 1px solid #222; white-space: nowrap;
   }
   nav a {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: #666;
-    text-decoration: none;
-    padding: 0 18px;
-    display: flex; align-items: center;
+    font-family: var(--mono); font-size: 9px; letter-spacing: .14em;
+    text-transform: uppercase; color: #666; text-decoration: none;
+    padding: 0 18px; display: flex; align-items: center;
     border-right: 1px solid #222;
     transition: color .15s, background .15s;
   }
   nav a:hover { color: var(--bg); background: #222; }
-  nav a.active { color: var(--accent-light); }
+  nav a.active { color: var(--accent); }
   .nav-spacer { flex: 1; }
 
-  /* ─── HERO ─── */
+  /* HERO */
   .hero {
     padding: 96px 64px 72px;
     border-bottom: 1px solid var(--border);
-    display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 64px;
-    align-items: end;
+    display: grid; grid-template-columns: 1fr 320px; gap: 64px; align-items: end;
   }
   .eyebrow {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 20px;
+    font-family: var(--mono); font-size: 9px; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
   }
   .hero h1 {
-    font-family: var(--sans);
-    font-size: clamp(40px, 5.5vw, 72px);
-    font-weight: 300;
-    line-height: 1.05;
-    letter-spacing: -.02em;
-    color: var(--ink);
+    font-family: var(--sans); font-size: clamp(40px,5.5vw,72px);
+    font-weight: 300; line-height: 1.05; letter-spacing: -.02em; color: var(--ink);
   }
-  .hero h1 strong {
-    font-weight: 500;
-  }
+  .hero h1 strong { font-weight: 500; }
   .hero-meta {
-    border-left: 1px solid var(--border);
-    padding-left: 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    border-left: 1px solid var(--border); padding-left: 32px;
+    display: flex; flex-direction: column; gap: 20px;
   }
   .meta-item label {
-    font-family: var(--mono);
-    font-size: 8px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    display: block;
-    margin-bottom: 4px;
+    font-family: var(--mono); font-size: 8px; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 4px;
   }
-  .meta-item p {
-    font-size: 13px;
-    color: var(--body);
-    line-height: 1.5;
-  }
+  .meta-item p { font-size: 13px; color: var(--body); line-height: 1.5; }
 
-  /* ─── LAYOUT ─── */
+  /* LAYOUT */
   .wrap { max-width: 1100px; margin: 0 auto; }
 
-  /* ─── PARTS ─── */
+  /* PARTS */
   .part { border-bottom: 1px solid var(--border); }
-
   .part-header {
-    display: grid;
-    grid-template-columns: 100px 1fr auto;
-    align-items: stretch;
-    cursor: pointer;
+    display: grid; grid-template-columns: 100px 1fr auto;
+    align-items: stretch; cursor: pointer;
     border-bottom: 1px solid var(--border);
     transition: background .15s;
   }
   .part-header:hover { background: var(--surface); }
-
   .part-num {
-    background: var(--ink);
-    color: var(--bg);
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .12em;
+    background: var(--ink); color: var(--bg);
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
     display: flex; align-items: center; justify-content: center;
   }
-
   .part-title-block {
-    padding: 28px 40px;
-    display: flex; flex-direction: column; justify-content: center; gap: 6px;
+    padding: 28px 40px; display: flex; flex-direction: column;
+    justify-content: center; gap: 6px;
   }
   .part-tag {
-    font-family: var(--mono);
-    font-size: 8px;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--accent);
+    font-family: var(--mono); font-size: 8px; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--accent);
   }
   .part-title {
-    font-family: var(--sans);
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--ink);
-    letter-spacing: -.01em;
+    font-family: var(--sans); font-size: 22px; font-weight: 400;
+    color: var(--ink); letter-spacing: -.01em;
   }
-
   .part-toggle {
-    padding: 0 40px;
-    display: flex; align-items: center;
-    font-family: var(--mono);
-    font-size: 18px;
-    color: var(--muted);
+    padding: 0 40px; display: flex; align-items: center;
+    font-family: var(--mono); font-size: 18px; color: var(--muted);
   }
-
-  .part-body {
-    display: none;
-    padding: 56px 40px 56px 140px;
-  }
+  .part-body { display: none; padding: 56px 40px 56px 140px; }
   .part-body.open { display: block; }
 
-  /* ─── SECTIONS ─── */
+  /* SECTIONS */
   .section { margin-bottom: 56px; }
   .section:last-child { margin-bottom: 0; }
-
   .section-label {
-    font-family: var(--mono);
-    font-size: 8px;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--muted);
+    font-family: var(--mono); font-size: 8px; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--muted);
     border-bottom: 1px solid var(--border);
-    padding-bottom: 8px;
-    margin-bottom: 20px;
+    padding-bottom: 8px; margin-bottom: 20px;
   }
-
   .section h3 {
-    font-family: var(--sans);
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--ink);
-    margin-bottom: 14px;
-    letter-spacing: -.01em;
-    line-height: 1.3;
+    font-family: var(--sans); font-size: 18px; font-weight: 500;
+    color: var(--ink); margin-bottom: 14px; letter-spacing: -.01em; line-height: 1.3;
   }
+  .section p { max-width: 660px; line-height: 1.75; margin-bottom: 10px; }
+  em { font-style: italic; } strong { font-weight: 500; }
 
-  .section p {
-    max-width: 660px;
-    line-height: 1.75;
-    margin-bottom: 10px;
-    color: var(--body);
-  }
-
-  em { font-style: italic; }
-  strong { font-weight: 500; }
-
-  /* ─── BLOCKQUOTE ─── */
+  /* BLOCKQUOTE */
   blockquote {
-    margin: 28px 0;
-    padding: 22px 24px;
-    background: var(--surface);
-    border-left: 2px solid var(--accent);
+    margin: 28px 0; padding: 22px 24px;
+    background: var(--surface); border-left: 2px solid var(--accent);
   }
   blockquote p {
-    font-family: var(--sans);
-    font-style: italic;
-    font-size: 14px;
-    line-height: 1.78;
-    color: var(--ink);
-    max-width: 100%;
-    margin-bottom: 10px;
+    font-family: var(--sans); font-style: italic; font-size: 14px;
+    line-height: 1.78; color: var(--ink); max-width: 100%; margin-bottom: 10px;
   }
   blockquote cite {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: .08em;
-    color: var(--muted);
-    font-style: normal;
+    font-family: var(--mono); font-size: 9px; letter-spacing: .08em;
+    color: var(--muted); font-style: normal;
   }
 
-  /* ─── AUTHOR CARD ─── */
+  /* AUTHOR CARD */
   .author-card {
-    border: 1px solid var(--border);
-    padding: 24px 28px;
-    margin: 20px 0;
-    max-width: 660px;
-    background: var(--bg);
+    border: 1px solid var(--border); padding: 24px 28px;
+    margin: 20px 0; max-width: 660px;
   }
   .author-card .author-name {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 6px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
   }
   .author-card .author-ref {
-    font-family: var(--mono);
-    font-size: 9px;
-    color: var(--muted);
-    margin-bottom: 12px;
+    font-family: var(--mono); font-size: 9px; color: var(--muted); margin-bottom: 12px;
   }
-  .author-card p {
-    font-size: 13px;
-    line-height: 1.65;
-    color: var(--body);
-    margin: 0;
-    max-width: 100%;
-  }
+  .author-card p { font-size: 13px; line-height: 1.65; margin: 0; max-width: 100%; }
 
-  /* ─── TAGS ─── */
+  /* TAGS */
   .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0; }
   .tag {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border: 1px solid var(--border);
-    color: var(--body);
-    background: transparent;
+    font-family: var(--mono); font-size: 9px; letter-spacing: .1em;
+    text-transform: uppercase; padding: 4px 10px;
+    border: 1px solid var(--border); color: var(--body); background: transparent;
   }
   .tag.filled { background: var(--ink); color: var(--bg); border-color: var(--ink); }
   .tag.accent-tag { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-  /* ─── GRID 2 ─── */
+  /* GRIDS */
   .grid2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    margin: 24px 0;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); margin: 24px 0;
   }
-  .grid2-cell {
-    background: var(--bg);
-    padding: 24px 28px;
-  }
+  .grid2-cell { background: var(--bg); padding: 24px 28px; }
   .grid2-cell .cell-label {
-    font-family: var(--mono);
-    font-size: 8px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 10px;
+    font-family: var(--mono); font-size: 8px; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
   }
   .grid2-cell h4 {
-    font-family: var(--sans);
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--ink);
-    margin-bottom: 8px;
+    font-family: var(--sans); font-size: 15px; font-weight: 500;
+    color: var(--ink); margin-bottom: 8px;
   }
-  .grid2-cell p {
-    font-size: 13px;
-    line-height: 1.65;
-    color: var(--body);
-    margin-bottom: 6px;
-    max-width: 100%;
-  }
+  .grid2-cell p { font-size: 13px; line-height: 1.65; margin-bottom: 6px; max-width: 100%; }
 
-  /* ─── GRID 4 PROGRAM ─── */
   .grid4 {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    margin: 24px 0;
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); margin: 24px 0;
   }
-  .grid4-cell {
-    background: var(--bg);
-    padding: 22px 20px;
-    display: flex; flex-direction: column;
-  }
+  .grid4-cell { background: var(--bg); padding: 22px 20px; display: flex; flex-direction: column; }
   .grid4-cell .cell-num {
-    font-family: var(--mono);
-    font-size: 28px;
-    font-weight: 300;
-    color: var(--border);
-    line-height: 1;
-    margin-bottom: 10px;
+    font-family: var(--mono); font-size: 28px; font-weight: 300;
+    color: var(--border); line-height: 1; margin-bottom: 10px;
   }
   .grid4-cell .cell-label {
-    font-family: var(--mono);
-    font-size: 8px;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 8px;
+    font-family: var(--mono); font-size: 8px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
   }
-  .grid4-cell h4 {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--ink);
-    margin-bottom: 8px;
-  }
-  .grid4-cell p {
-    font-size: 12px;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
+  .grid4-cell h4 { font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .grid4-cell p { font-size: 12px; line-height: 1.6; color: var(--muted); margin-bottom: 6px; }
   .grid4-cell p em { color: var(--body); }
   .fn { font-family: var(--mono); font-size: 8px; vertical-align: super; color: var(--accent); }
 
-  /* ─── CONCEPTS ROW ─── */
+  /* CONCEPTS */
   .concepts { display: flex; gap: 1px; margin: 24px 0; background: var(--border); }
-  .concept {
-    flex: 1;
-    background: var(--surface);
-    padding: 20px;
-  }
-  .concept-sym {
-    font-family: var(--mono);
-    font-size: 20px;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 10px;
-  }
+  .concept { flex: 1; background: var(--surface); padding: 20px; }
+  .concept-sym { font-family: var(--mono); font-size: 20px; color: var(--accent); line-height: 1; margin-bottom: 10px; }
   .concept-name {
-    font-family: var(--mono);
-    font-size: 8px;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 6px;
+    font-family: var(--mono); font-size: 8px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
   }
-  .concept p {
-    font-size: 12px;
-    color: var(--body);
-    line-height: 1.6;
-    margin: 0;
-    max-width: 100%;
-  }
+  .concept p { font-size: 12px; line-height: 1.6; margin: 0; max-width: 100%; }
 
-  /* ─── IMAGE PLACEHOLDER ─── */
-  .img-block {
-    margin: 32px 0;
-    max-width: 760px;
-  }
-  .img-placeholder {
-    background: var(--surface);
-    border: 1px dashed var(--border);
-    aspect-ratio: 16/9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: background .15s;
-  }
-  .img-placeholder:hover { background: var(--border); }
-  .img-placeholder input[type="file"] {
-    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
-  }
-  .img-placeholder img {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; display: none;
-  }
-  .img-placeholder.loaded .placeholder-label { display: none; }
-  .img-placeholder.loaded img { display: block; }
-  .placeholder-label {
-    text-align: center;
-    pointer-events: none;
-  }
-  .placeholder-label .icon {
-    font-family: var(--mono);
-    font-size: 22px;
-    color: var(--border);
-    display: block;
-    margin-bottom: 6px;
-  }
-  .placeholder-label span {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--muted);
-    display: block;
-  }
-  .img-caption {
-    margin-top: 10px;
-    display: flex;
-    gap: 12px;
-    align-items: baseline;
-  }
-  .img-caption .cap-ref {
-    font-family: var(--mono);
-    font-size: 8px;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    white-space: nowrap;
-  }
-  .img-caption p {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 1.5;
-    margin: 0;
-  }
-
-  /* ─── DIVIDER ─── */
-  .divider {
-    display: flex; align-items: center; gap: 16px;
-    margin: 40px 0;
-  }
-  .divider::before, .divider::after {
-    content: ''; flex: 1; height: 1px; background: var(--border);
-  }
+  /* DIVIDER */
+  .divider { display: flex; align-items: center; gap: 16px; margin: 40px 0; }
+  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
   .divider span {
-    font-family: var(--mono);
-    font-size: 8px; letter-spacing: .2em;
-    text-transform: uppercase; color: var(--muted);
-    white-space: nowrap;
+    font-family: var(--mono); font-size: 8px; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--muted); white-space: nowrap;
   }
 
-  /* ─── EXERCISE ─── */
-  .exercise {
-    background: var(--ink);
-    color: var(--bg);
-    padding: 64px;
-  }
-  .exercise .eyebrow { color: var(--accent-light); margin-bottom: 16px; }
+  /* EXERCISE */
+  .exercise { background: var(--ink); color: var(--bg); padding: 64px; }
+  .exercise .eyebrow { color: var(--accent); margin-bottom: 16px; }
   .exercise h2 {
-    font-family: var(--sans);
-    font-size: 26px;
-    font-weight: 300;
-    color: var(--bg);
-    margin-bottom: 32px;
-    letter-spacing: -.01em;
-    max-width: 560px;
-    line-height: 1.3;
+    font-family: var(--sans); font-size: 26px; font-weight: 300;
+    color: var(--bg); margin-bottom: 32px; letter-spacing: -.01em;
+    max-width: 560px; line-height: 1.3;
   }
   .level-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: #222;
-    margin-bottom: 40px;
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1px; background: #222; margin-bottom: 40px;
   }
-  .level-cell {
-    background: #1a1a18;
-    padding: 24px;
-  }
+  .level-cell { background: #1a1a18; padding: 24px; }
   .level-cell .lnum {
-    font-family: var(--mono);
-    font-size: 32px;
-    font-weight: 300;
-    color: #333;
-    line-height: 1;
-    margin-bottom: 10px;
+    font-family: var(--mono); font-size: 32px; font-weight: 300;
+    color: #333; line-height: 1; margin-bottom: 10px;
   }
   .level-cell .lname {
-    font-family: var(--mono);
-    font-size: 8px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--accent-light);
-    margin-bottom: 8px;
+    font-family: var(--mono); font-size: 8px; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
   }
-  .level-cell p {
-    font-size: 12px;
-    color: #666;
-    line-height: 1.6;
-  }
+  .level-cell p { font-size: 12px; color: #666; line-height: 1.6; }
   .exercise-prompt {
-    border: 1px solid #333;
-    padding: 24px 28px;
-    max-width: 600px;
-    font-style: italic;
-    font-size: 14px;
-    line-height: 1.75;
-    color: var(--bg);
+    border: 1px solid #333; padding: 24px 28px; max-width: 600px;
+    font-style: italic; font-size: 14px; line-height: 1.75; color: var(--bg);
   }
-  .exercise-prompt strong { font-style: normal; font-weight: 500; color: var(--accent-light); }
+  .exercise-prompt strong { font-style: normal; font-weight: 500; color: #7a9fff; }
 
-  /* ─── REFS ─── */
-  .refs {
-    padding: 48px 64px;
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-  }
+  /* REFS */
+  .refs { padding: 48px 64px; background: var(--surface); border-top: 1px solid var(--border); }
   .refs h2 {
-    font-family: var(--mono);
-    font-size: 8px;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 24px;
+    font-family: var(--mono); font-size: 8px; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 24px;
   }
   .ref-list { list-style: none; counter-reset: ref; columns: 2; column-gap: 48px; }
   .ref-list li {
-    counter-increment: ref;
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 10px;
-    padding-left: 22px;
-    position: relative;
-    break-inside: avoid;
+    counter-increment: ref; font-size: 12px; color: var(--muted);
+    line-height: 1.6; margin-bottom: 10px; padding-left: 22px;
+    position: relative; break-inside: avoid;
   }
   .ref-list li::before {
-    content: counter(ref) ".";
-    position: absolute; left: 0;
-    font-family: var(--mono);
-    font-size: 8px;
-    color: var(--accent);
-    top: 3px;
+    content: counter(ref) "."; position: absolute; left: 0;
+    font-family: var(--mono); font-size: 8px; color: var(--accent); top: 3px;
   }
 
-  /* ─── SCROLLBAR ─── */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); }
 
-  /* ─── RESPONSIVE ─── */
   @media (max-width: 800px) {
     .hero { grid-template-columns: 1fr; gap: 32px; padding: 80px 24px 48px; }
     .hero-meta { border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 20px; }
@@ -608,7 +302,6 @@
 
 <div class="wrap">
 
-  <!-- HERO -->
   <header class="hero">
     <div>
       <p class="eyebrow">Elementos de Arquitetura — Material de Aula</p>
@@ -630,9 +323,9 @@
     </div>
   </header>
 
-  <!-- ═══ PARTE I ═══ -->
+  <!-- I -->
   <section class="part" id="p1">
-    <div class="part-header" onclick="toggle('b1',this,'arr1')">
+    <div class="part-header" onclick="toggle('b1','arr1')">
       <div class="part-num">I</div>
       <div class="part-title-block">
         <span class="part-tag">Relação</span>
@@ -642,7 +335,6 @@
     </div>
     <div class="part-body" id="b1">
 
-      <!-- 1.1 Operador -->
       <div class="section">
         <p class="section-label">Conceito fundamental</p>
         <h3>O plano como operador do programa</h3>
@@ -653,11 +345,10 @@
         </blockquote>
       </div>
 
-      <!-- 1.2 Situações -->
       <div class="section">
         <p class="section-label">Plano e situações</p>
         <h3>O plano organiza situações, não apenas funções</h3>
-        <p>A distinção é decisiva: funções são categorias abstratas (habitar, trabalhar, circular); situações são eventos concretos, incorporados, percebidos. O plano articula:</p>
+        <p>A distinção é decisiva: funções são categorias abstratas; situações são eventos concretos, incorporados, percebidos. O plano articula:</p>
         <div class="concepts">
           <div class="concept">
             <div class="concept-sym">—</div>
@@ -681,11 +372,10 @@
         </blockquote>
       </div>
 
-      <!-- 1.3 Campo aberto -->
       <div class="section">
-        <p class="section-label">Plano como campo aberto</p>
+        <p class="section-label">Campo aberto</p>
         <h3>Programa: temporalidade, flexibilidade, indeterminação</h3>
-        <p>O plano não precisa fixar usos exclusivamente: pode <strong>gerar qualidades</strong> que criem possibilidades. O programa, assim entendido, é algo que se transforma no tempo — e as qualidades espaciais são a capacidade de acolher essas transformações.</p>
+        <p>O plano não precisa fixar usos exclusivamente: pode <strong>gerar qualidades</strong> que criem possibilidades. O programa é algo que se transforma no tempo — e as qualidades espaciais são a capacidade de acolher essas transformações.</p>
         <div class="tags">
           <span class="tag filled">Campo aberto</span>
           <span class="tag">Não determinista</span>
@@ -695,7 +385,6 @@
 
       <div class="divider"><span>Genealogia do conceito de programa</span></div>
 
-      <!-- 1.4 Grid 4 -->
       <div class="section">
         <p class="section-label">Panorama histórico-crítico</p>
         <h3>Quatro momentos na concepção do programa</h3>
@@ -710,7 +399,7 @@
             <div class="cell-num">02</div>
             <div class="cell-label">Japão</div>
             <h4>Programa flexível e integrado</h4>
-            <p>Espaços modulados por <em>tatamis</em> e <em>shōji</em>, redefinidos segundo usos temporários. Barthes: <em>"No Japão, a casa não é feita de espaço, mas de intervalos."</em><span class="fn">³</span> Maki: <em>compositional form</em> como sistema aberto.<span class="fn">⁴</span></p>
+            <p>Espaços modulados por <em>tatamis</em> e <em>shōji</em>. Barthes: <em>"No Japão, a casa não é feita de espaço, mas de intervalos."</em><span class="fn">³</span> Maki: <em>compositional form</em> como sistema aberto.<span class="fn">⁴</span></p>
           </div>
           <div class="grid4-cell">
             <div class="cell-num">03</div>
@@ -727,16 +416,15 @@
         </div>
       </div>
 
-      <!-- 1.5 Koolhaas + Allen — NOVO -->
       <div class="section">
         <p class="section-label">Virada pós-1990 — aprofundamento</p>
         <h3>Programa como script e como evento</h3>
-        <p>A partir dos anos 1990, o programa deixa de ser lista funcional para tornar-se <strong>campo de integração, temporalidade e inclusão</strong>. Dois autores são centrais nessa virada:</p>
+        <p>A partir dos anos 1990, o programa deixa de ser lista funcional para tornar-se <strong>campo de integração, temporalidade e inclusão</strong>.</p>
 
         <div class="author-card">
           <div class="author-name">Rem Koolhaas</div>
-          <div class="author-ref">S,M,L,XL — com Bruce Mau. New York: Monacelli Press, 1995, p. 961</div>
-          <p>Koolhaas propõe que o programa não é uma lista prescritiva, mas um <em>script</em> — uma estrutura de possibilidades, aberta à improvisação, à sobreposição e ao imprevisto. Em projetos como a Biblioteca Pública de Seattle (OMA, 2004), o programa é organizado não por separação funcional rígida, mas por <strong>espirais contínuas</strong> de atividade — "plataformas" programáticas que coexistem e se sobrepõem, gerando hibridismos e contaminações entre usos. O plano, aqui, não fixa: <em>catalisa</em>.</p>
+          <div class="author-ref">S,M,L,XL — New York: Monacelli Press, 1995, p. 961</div>
+          <p>Koolhaas propõe que o programa não é uma lista prescritiva, mas um <em>script</em> — estrutura de possibilidades aberta à improvisação, à sobreposição e ao imprevisto. Na Biblioteca Pública de Seattle (OMA, 2004), o programa é organizado por <strong>plataformas</strong> programáticas que coexistem e se contaminam. O plano não fixa: <em>catalisa</em>.</p>
         </div>
 
         <blockquote>
@@ -744,35 +432,16 @@
           <cite>Rem Koolhaas, S,M,L,XL, 1995, p. 961</cite>
         </blockquote>
 
-        <!-- Imagem: Diagrama de fluxos Seattle -->
-        <div class="img-block">
-          <div class="img-placeholder" id="img-seattle">
-            <input type="file" accept="image/*" onchange="loadImg(this,'img-seattle')">
-            <img id="img-seattle-img" alt="">
-            <div class="placeholder-label">
-              <span class="icon">+</span>
-              <span>Inserir imagem</span>
-              <span style="margin-top:4px;color:var(--border)">Diagrama de fluxos — OMA, Seattle Public Library, 2004</span>
-            </div>
-          </div>
-          <div class="img-caption">
-            <span class="cap-ref">Fig. 01</span>
-            <p>OMA / Rem Koolhaas. <em>Seattle Central Library.</em> Seattle, 2004. Diagrama de organização programática por plataformas ("books spiral" + plataformas mistas). Exemplo paradigmático de programa como script — sobreposição e hibridismo de usos.</p>
-          </div>
-        </div>
-
         <div class="author-card">
           <div class="author-name">Stan Allen</div>
-          <div class="author-ref">Points + Lines: Diagrams and Projects for the City. New York: Princeton Architectural Press, 1999, p. 92</div>
-          <p>Allen desloca o foco do objeto para o <em>campo</em>: a arquitetura não organiza funções isoladas, mas a <strong>interface entre programa e evento</strong>. O plano, nessa perspectiva, é uma superfície de inscrição que estrutura possibilidades sem determiná-las completamente. Allen introduz o conceito de <em>field conditions</em> — condições de campo — em que relações locais entre elementos geram comportamentos emergentes no conjunto. O programa é, portanto, menos sobre o que acontece em cada ponto e mais sobre <em>como os pontos se relacionam</em>.</p>
+          <div class="author-ref">Points + Lines — New York: Princeton Architectural Press, 1999, p. 92</div>
+          <p>Allen desloca o foco do objeto para o <em>campo</em>: a arquitetura organiza a <strong>interface entre programa e evento</strong>. O plano é uma superfície de inscrição que estrutura possibilidades sem determiná-las completamente. O conceito de <em>field conditions</em> — condições de campo — propõe que relações locais entre elementos geram comportamentos emergentes no conjunto.</p>
         </div>
 
         <blockquote>
           <p>"Architecture organizes the interface between program and event."</p>
           <cite>Stan Allen, Points + Lines, 1999, p. 92</cite>
         </blockquote>
-
-        <p style="max-width:660px;margin-top:12px;">A contribuição de Allen é especialmente relevante para pensar o plano como <strong>estrutura relacional</strong> — não determinista, mas geradora de qualidades espaciais que tornam possíveis diferentes eventos e situações. Isso ressoa diretamente com a formulação de Janson & Tigges sobre o plano como articulador de permanência, movimento e ação.</p>
 
         <div class="tags" style="margin-top:16px">
           <span class="tag filled">Programa como script</span>
@@ -785,9 +454,9 @@
     </div>
   </section>
 
-  <!-- ═══ PARTE II ═══ -->
+  <!-- II -->
   <section class="part" id="p2">
-    <div class="part-header" onclick="toggle('b2',this,'arr2')">
+    <div class="part-header" onclick="toggle('b2','arr2')">
       <div class="part-num">II</div>
       <div class="part-title-block">
         <span class="part-tag">Interface</span>
@@ -805,23 +474,6 @@
           <p>"A conexão entre o edifício e o solo também determina a maneira como o edifício se relaciona com o terreno do espaço exterior e como ambos se unem para formar uma unidade espacial. Por meio de sua presença palpável e de suas qualidades táteis, o embasamento constitui a primeira zona de contato na aproximação de um edifício em seu entorno imediato, sendo também seu primeiro signo distintivo."</p>
           <cite>Janson; Tigges, 2014, p. 31</cite>
         </blockquote>
-
-        <!-- Imagem: Casa Riken Yamamoto -->
-        <div class="img-block">
-          <div class="img-placeholder" id="img-yamamoto">
-            <input type="file" accept="image/*" onchange="loadImg(this,'img-yamamoto')">
-            <img id="img-yamamoto-img" alt="">
-            <div class="placeholder-label">
-              <span class="icon">+</span>
-              <span>Inserir imagem</span>
-              <span style="margin-top:4px;color:var(--border)">Riken Yamamoto — relação plano–chão</span>
-            </div>
-          </div>
-          <div class="img-caption">
-            <span class="cap-ref">Fig. 02</span>
-            <p>Riken Yamamoto. Exemplo a definir. Referência para discussão do plano–chão como interface com o espaço público e construção do "endereço" do edifício.</p>
-          </div>
-        </div>
       </div>
 
       <div class="section">
@@ -842,7 +494,7 @@
       <div class="section">
         <p class="section-label">Limiar / Threshold</p>
         <h3>O limiar não é uma linha — é uma espessura espacial</h3>
-        <p>Entre rua e interior existe um campo intermediário — arcadas, pórticos, vestíbulos, recuos. O limiar opera como zona de transição, mediação e transformação da experiência. Atravessá-lo é ajustar comportamento, percepção e expectativa.</p>
+        <p>Entre rua e interior existe um campo intermediário — arcadas, pórticos, vestíbulos, recuos. O limiar opera como zona de transição, mediação e transformação da experiência.</p>
         <blockquote>
           <p>"Disposta diante de um edifício, a arcada constitui um espaço intermediário que pertence simultaneamente ao edifício e ao espaço exterior. Ao atravessarmos tais camadas espaciais permeáveis, elas influenciam o ato de transição como zonas de interação e de mudança de comportamento."</p>
           <cite>Janson; Tigges, 2014, p. 18</cite>
@@ -864,31 +516,14 @@
             <p>Alteração da experiência corporal: luz, escala, textura, temperatura.</p>
           </div>
         </div>
-
-        <!-- Imagem: Vila Katsura -->
-        <div class="img-block">
-          <div class="img-placeholder" id="img-katsura">
-            <input type="file" accept="image/*" onchange="loadImg(this,'img-katsura')">
-            <img id="img-katsura-img" alt="">
-            <div class="placeholder-label">
-              <span class="icon">+</span>
-              <span>Inserir imagem</span>
-              <span style="margin-top:4px;color:var(--border)">Vila Katsura — limiar e gradação</span>
-            </div>
-          </div>
-          <div class="img-caption">
-            <span class="cap-ref">Fig. 03</span>
-            <p>Vila Imperial Katsura, Kyoto, séc. XVII. Referência para a discussão do limiar como espessura espacial — sequência de transições entre jardim, engawa, shōji e interior. Programa flexível e integrado.</p>
-          </div>
-        </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ═══ PARTE III ═══ -->
+  <!-- III -->
   <section class="part" id="p3">
-    <div class="part-header" onclick="toggle('b3',this,'arr3')">
+    <div class="part-header" onclick="toggle('b3','arr3')">
       <div class="part-num">III</div>
       <div class="part-title-block">
         <span class="part-tag">Relações verticais</span>
@@ -915,7 +550,7 @@
       <div class="section">
         <p class="section-label">Narrativa espacial</p>
         <h3>Circulação como sequência e leitura do espaço</h3>
-        <p>O edifício é compreendido pelo corpo em movimento — a circulação constrói uma leitura espacial no tempo. Sequências cotidianas de movimento <em>cristalizam-se em figuras</em>, tornando intuitivamente legível a estrutura espacial do conjunto.</p>
+        <p>O edifício é compreendido pelo corpo em movimento — a circulação constrói uma leitura espacial no tempo. Sequências cotidianas se <em>cristalizam em figuras</em>, tornando legível a estrutura espacial do conjunto.</p>
         <blockquote>
           <p>"Uma sequência de movimento é composta por diversos componentes figurais. Tais sequências cotidianas de movimento se cristalizam em figuras, permitindo que a estrutura espacial de uma configuração arquitetônica se torne intuitivamente clara."</p>
           <cite>Janson; Tigges, 2014, p. 119</cite>
@@ -929,13 +564,13 @@
           <div class="grid2-cell">
             <div class="cell-label">Escada</div>
             <h4>Hierarquia, esforço, conquista</h4>
-            <p>Ascender é <em>ganhar perspectiva</em>, alcançar novos níveis. A escada articula uma ordem gradual — do inferior ao superior — profundamente enraizada culturalmente. A chegada ao topo assemelha-se a um triunfo.</p>
+            <p>Ascender é <em>ganhar perspectiva</em>. A escada articula uma ordem gradual — do inferior ao superior — profundamente enraizada culturalmente. A chegada assemelha-se a um triunfo.</p>
             <div class="tags"><span class="tag">Hierarquia</span><span class="tag">Conquista</span><span class="tag">Transformação</span></div>
           </div>
           <div class="grid2-cell">
             <div class="cell-label">Rampa</div>
             <h4>Continuidade, promenade, visão ampliada</h4>
-            <p>Sem a interrupção dos degraus, o corpo fica <em>livre para olhar ao redor</em>. A extensão necessária do percurso transforma-o em uma <em>promenade architecturale</em> — experiência fluida entre espaços.</p>
+            <p>Sem a interrupção dos degraus, o corpo fica <em>livre para olhar ao redor</em>. A extensão do percurso transforma-o em uma <em>promenade architecturale</em> — experiência fluida entre espaços.</p>
             <div class="tags"><span class="tag">Continuidade</span><span class="tag">Visão ampliada</span><span class="tag">Fluidez</span></div>
           </div>
         </div>
@@ -947,31 +582,14 @@
           <p>"Como não precisamos prestar atenção à presença de degraus durante a subida, estamos livres para olhar ao redor. A extensão necessária do percurso transforma-o em uma promenade."</p>
           <cite>Janson; Tigges, 2014, p. 25</cite>
         </blockquote>
-
-        <!-- Imagem placeholder circulação -->
-        <div class="img-block">
-          <div class="img-placeholder" id="img-circ">
-            <input type="file" accept="image/*" onchange="loadImg(this,'img-circ')">
-            <img id="img-circ-img" alt="">
-            <div class="placeholder-label">
-              <span class="icon">+</span>
-              <span>Inserir imagem</span>
-              <span style="margin-top:4px;color:var(--border)">Exemplo de circulação — escada ou rampa</span>
-            </div>
-          </div>
-          <div class="img-caption">
-            <span class="cap-ref">Fig. 04</span>
-            <p>Exemplo a definir. Referência para a discussão da circulação como sequência espacial e narrativa — escada vs. rampa.</p>
-          </div>
-        </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ═══ PARTE IV ═══ -->
+  <!-- IV -->
   <section class="part" id="p4">
-    <div class="part-header" onclick="toggle('b4',this,'arr4')">
+    <div class="part-header" onclick="toggle('b4','arr4')">
       <div class="part-num">IV</div>
       <div class="part-title-block">
         <span class="part-tag">Plano superior</span>
@@ -1011,7 +629,7 @@
       <div class="section">
         <p class="section-label">Experiência e escala urbana</p>
         <h3>Antecipação, moldagem do interior e paisagem urbana</h3>
-        <p>A cobertura age <em>antes da entrada</em>: cria expectativa, marca transição, protege. Ela orienta, centra ou subdivide o espaço interno — podendo expandi-lo verticalmente ou comprimi-lo. E, coletivamente, constrói a topografia urbana.</p>
+        <p>A cobertura age <em>antes da entrada</em>: cria expectativa, marca transição, protege. Ela orienta, centra ou subdivide o espaço interno. E, coletivamente, constrói a topografia urbana.</p>
         <blockquote>
           <p>"Ao observar um edifício do exterior, a cobertura sugere o espaço protegido em seu interior, evocando expectativas e convidando à entrada. O espaço é orientado, centrado ou subdividido pelo gesto da cobertura, podendo expandir-se para cima ou ser comprimido."</p>
           <cite>Janson; Tigges, 2014, p. 262</cite>
@@ -1027,29 +645,12 @@
           <span class="tag accent-tag">→</span>
           <span class="tag filled">Cidade</span>
         </div>
-
-        <!-- Imagem cobertura -->
-        <div class="img-block">
-          <div class="img-placeholder" id="img-cob">
-            <input type="file" accept="image/*" onchange="loadImg(this,'img-cob')">
-            <img id="img-cob-img" alt="">
-            <div class="placeholder-label">
-              <span class="icon">+</span>
-              <span>Inserir imagem</span>
-              <span style="margin-top:4px;color:var(--border)">Exemplo de cobertura — partido e escala urbana</span>
-            </div>
-          </div>
-          <div class="img-caption">
-            <span class="cap-ref">Fig. 05</span>
-            <p>Exemplo a definir. Referência para discussão da cobertura como síntese do partido e elemento de composição urbana.</p>
-          </div>
-        </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ═══ EXERCÍCIO ═══ -->
+  <!-- EXERCÍCIO -->
   <section id="exercicio" class="exercise">
     <p class="eyebrow">Exercício / Discussão em aula</p>
     <h2>Os planos operam simultaneamente em três níveis</h2>
@@ -1057,12 +658,12 @@
       <div class="level-cell">
         <div class="lnum">01</div>
         <div class="lname">Programático</div>
-        <p>Que atividades o plano acolhe, separa, aproxima ou exclui. Como o programa está organizado — por setorização, hibridismo, temporalidade?</p>
+        <p>Que atividades o plano acolhe, separa, aproxima ou exclui. O programa está organizado por setorização, hibridismo ou temporalidade?</p>
       </div>
       <div class="level-cell">
         <div class="lnum">02</div>
         <div class="lname">Espacial</div>
-        <p>Como os planos constroem percursos, gradientes e hierarquias. Que tipo de relações o plano–chão, os intermediários e a cobertura estabelecem entre si?</p>
+        <p>Como os planos constroem percursos, gradientes e hierarquias. Que relações o plano–chão, os intermediários e a cobertura estabelecem entre si?</p>
       </div>
       <div class="level-cell">
         <div class="lnum">03</div>
@@ -1071,11 +672,11 @@
       </div>
     </div>
     <div class="exercise-prompt">
-      Analisem o próprio projeto: identifiquem seus conteúdos programáticos, como estão organizados espacialmente e que tipo de experiência produzem — tomando os planos (<strong>chão, intermediários, cobertura</strong>) como chave de leitura. Considerem também: o programa funciona como <strong>lista ou como script</strong>?
+      Analisem o próprio projeto: identifiquem seus conteúdos programáticos, como estão organizados espacialmente e que tipo de experiência produzem — tomando os planos (<strong>chão, intermediários, cobertura</strong>) como chave de leitura. O programa funciona como <strong>lista ou como script</strong>?
     </div>
   </section>
 
-  <!-- ═══ REFS ═══ -->
+  <!-- REFS -->
   <footer class="refs">
     <h2>Referências bibliográficas</h2>
     <ol class="ref-list">
@@ -1084,25 +685,23 @@
       <li>Barthes, R. <em>L'Empire des signes.</em> Paris: Skira, 1970, p. 44.</li>
       <li>Maki, F. <em>Investigations in Collective Form.</em> St. Louis: Washington University, 1964, p. 10–15.</li>
       <li>Koolhaas, R. <em>S,M,L,XL.</em> New York: Monacelli Press, 1995, p. 961.</li>
-      <li>Allen, S. <em>Points + Lines: Diagrams and Projects for the City.</em> New York: Princeton Architectural Press, 1999, p. 92.</li>
+      <li>Allen, S. <em>Points + Lines.</em> New York: Princeton Architectural Press, 1999, p. 92.</li>
       <li>Colomina, B. <em>Domesticity at War.</em> Cambridge: MIT Press, 2006, p. 12.</li>
       <li>Hayden, D. <em>The Grand Domestic Revolution.</em> Cambridge: MIT Press, 1981, p. 4.</li>
       <li>Frichot, H. <em>How to Make Yourself a Feminist Design Power Tool.</em> London: AADR, 2016, p. 22.</li>
-      <li>Janson, A.; Tigges, F. <em>Grundbegriffe der Architektur.</em> Basel: Birkhäuser, 2014. [referência estruturante]</li>
+      <li>Janson, A.; Tigges, F. <em>Grundbegriffe der Architektur.</em> Basel: Birkhäuser, 2014.</li>
     </ol>
   </footer>
 
-</div><!-- /wrap -->
+</div>
 
 <script>
-  function toggle(id, header, arrId) {
+  function toggle(id, arrId) {
     const body = document.getElementById(id);
     const arr  = document.getElementById(arrId);
     const open = body.classList.toggle('open');
     arr.textContent = open ? '−' : '+';
   }
-
-  // Nav highlight
   const sections = ['p1','p2','p3','p4','exercicio'];
   const navLinks  = document.querySelectorAll('nav a');
   window.addEventListener('scroll', () => {
@@ -1113,20 +712,6 @@
     });
     navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
   });
-
-  // Image upload
-  function loadImg(input, containerId) {
-    const file = input.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = e => {
-      const container = document.getElementById(containerId);
-      const img = container.querySelector('img');
-      img.src = e.target.result;
-      container.classList.add('loaded');
-    };
-    reader.readAsDataURL(file);
-  }
 </script>
 </body>
 </html>
