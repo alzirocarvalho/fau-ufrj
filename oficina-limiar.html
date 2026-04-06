@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Oficina Limiar — Roteiro de Aula</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #111;
+      --white: #fff;
+      --grey-light: #f4f4f2;
+      --grey-mid: #ccc;
+      --grey-text: #555;
+      --accent: #111;
+      --nav-h: 48px;
+      --max-w: 720px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Figtree', sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--black);
+      background: var(--white);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--black);
+      color: var(--white);
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      gap: 0;
+      overflow-x: auto;
+    }
+
+    nav .nav-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      margin-right: 32px;
+      opacity: .5;
+      flex-shrink: 0;
+    }
+
+    nav a {
+      color: rgba(255,255,255,.45);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      white-space: nowrap;
+      padding: 0 14px;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      transition: color .15s;
+      flex-shrink: 0;
+    }
+
+    nav a:hover { color: rgba(255,255,255,.85); }
+    nav a.active { color: var(--white); border-bottom: 2px solid var(--white); }
+
+    /* ── BANNER ── */
+    .banner {
+      background: var(--black);
+      color: var(--white);
+      padding: 64px 32px 80px;
+    }
+
+    .banner-meta {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .45;
+      margin-bottom: 28px;
+    }
+
+    .banner h1 {
+      font-size: clamp(48px, 8vw, 88px);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -.02em;
+      max-width: 820px;
+      margin-bottom: 40px;
+    }
+
+    .banner h1 em {
+      font-style: normal;
+      opacity: .45;
+    }
+
+    .banner-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      max-width: 820px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+
+    .banner-info .label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .4;
+      margin-bottom: 6px;
+    }
+
+    .banner-info .value {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.5;
+      opacity: .8;
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ── SECTION ── */
+    section {
+      padding: 80px 0 40px;
+      border-top: 1px solid #e8e8e5;
+    }
+
+    section:first-of-type { border-top: none; }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--grey-text);
+      margin-bottom: 24px;
+    }
+
+    section h2 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin-bottom: 32px;
+    }
+
+    section h3 {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--grey-text);
+      margin: 40px 0 12px;
+    }
+
+    section p {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.75;
+      color: #2a2a2a;
+      margin-bottom: 16px;
+    }
+
+    section p:last-child { margin-bottom: 0; }
+
+    /* ── CONCEPT BLOCK ── */
+    .concept-block {
+      background: var(--grey-light);
+      border-radius: 4px;
+      padding: 28px 32px;
+      margin: 32px 0;
+    }
+
+    .concept-block .concept-term {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--grey-text);
+      margin-bottom: 10px;
+    }
+
+    .concept-block p {
+      font-size: 15px;
+      margin-bottom: 0;
+    }
+
+    /* ── QUOTE ── */
+    blockquote {
+      position: relative;
+      margin: 36px 0;
+      padding: 20px 24px;
+      border-left: 3px solid var(--black);
+    }
+
+    blockquote p {
+      font-size: 16px;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--black);
+      margin-bottom: 0;
+    }
+
+    blockquote cite {
+      display: block;
+      margin-top: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      font-style: normal;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--grey-text);
+    }
+
+    /* ── HIGHLIGHT QUOTE ── */
+    .quote-highlight {
+      background: #fef500;
+      color: var(--black);
+      padding: 2px 4px;
+    }
+
+    /* ── TERM LIST ── */
+    .term-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1px;
+      background: #e8e8e5;
+      border: 1px solid #e8e8e5;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 32px 0;
+    }
+
+    .term-item {
+      background: var(--white);
+      padding: 18px 20px;
+    }
+
+    .term-item .term-name {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: -.01em;
+    }
+
+    .term-item .term-desc {
+      font-size: 12px;
+      color: var(--grey-text);
+      line-height: 1.5;
+    }
+
+    /* ── TYPOLOGY LIST ── */
+    .typo-list {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .typo-list li {
+      display: flex;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid #e8e8e5;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .typo-list li:last-child { border-bottom: none; }
+
+    .typo-list li .typo-name {
+      font-weight: 700;
+      min-width: 140px;
+      flex-shrink: 0;
+    }
+
+    .typo-list li .typo-desc { color: #3a3a3a; }
+
+    /* ── PROJECT REF ── */
+    .ref-list {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .ref-list li {
+      padding: 16px 0;
+      border-bottom: 1px solid #e8e8e5;
+    }
+
+    .ref-list li:last-child { border-bottom: none; }
+
+    .ref-list .ref-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .ref-list .ref-desc {
+      font-size: 13px;
+      color: var(--grey-text);
+      line-height: 1.5;
+    }
+
+    /* ── EXERCISE ── */
+    #exercicio {
+      background: var(--black);
+      color: var(--white);
+      max-width: 100%;
+      padding: 80px 0;
+      margin-top: 40px;
+    }
+
+    #exercicio > .ex-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    #exercicio .section-label { color: rgba(255,255,255,.4); }
+
+    #exercicio h2 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin-bottom: 32px;
+      color: var(--white);
+    }
+
+    #exercicio h3 {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      margin: 36px 0 12px;
+    }
+
+    #exercicio p {
+      color: rgba(255,255,255,.8);
+      font-size: 15px;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .ex-steps {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .ex-steps li {
+      display: flex;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      color: rgba(255,255,255,.8);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .ex-steps li:last-child { border-bottom: none; }
+
+    .ex-steps .step-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.3);
+      min-width: 28px;
+      padding-top: 2px;
+    }
+
+    .ex-entregavel {
+      margin-top: 40px;
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 4px;
+    }
+
+    .ex-entregavel .label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 10px;
+    }
+
+    .ex-entregavel p { margin-bottom: 0; }
+
+    /* ── SEQUENCIA BANNER ── */
+    .seq-strip {
+      background: #f4f4f2;
+      padding: 20px 32px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      margin: 48px -32px 0;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--grey-text);
+    }
+
+    .seq-strip .seq-item {
+      padding: 0 16px 0 0;
+      border-right: 1px solid #ddd;
+      margin-right: 16px;
+      white-space: nowrap;
+    }
+
+    .seq-strip .seq-item:last-child { border-right: none; }
+    .seq-strip .seq-item.seq-current { color: var(--black); font-weight: 800; }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 48px 32px 64px;
+      border-top: 1px solid #e8e8e5;
+    }
+
+    footer p {
+      font-size: 12px;
+      color: var(--grey-text);
+      line-height: 1.6;
+    }
+
+    /* ── TOGGLE ── */
+    .toggle-btn {
+      background: none;
+      border: 1px solid #e8e8e5;
+      border-radius: 3px;
+      font-family: 'Figtree', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      color: var(--grey-text);
+      cursor: pointer;
+      padding: 6px 14px;
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all .15s;
+    }
+
+    .toggle-btn:hover { background: #f4f4f2; color: var(--black); }
+
+    .collapsible { overflow: hidden; transition: max-height .3s ease; }
+    .collapsible.collapsed { max-height: 0 !important; }
+
+    @media (max-width: 600px) {
+      main { padding: 0 20px; }
+      .banner { padding: 48px 20px 64px; }
+      nav { padding: 0 16px; }
+      .seq-strip { margin: 48px -20px 0; padding: 20px 20px; }
+      #exercicio > .ex-inner { padding: 0 20px; }
+      footer { padding: 40px 20px 56px; }
+      .typo-list li { flex-direction: column; gap: 4px; }
+      .typo-list li .typo-name { min-width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav" role="navigation" aria-label="Seções da aula">
+  <span class="nav-title">Oficina Limiar</span>
+  <a href="#p1" data-section="p1">I — Limiar</a>
+  <a href="#p2" data-section="p2">II — Dentro e Fora</a>
+  <a href="#p3" data-section="p3">III — Espaço Intermediário</a>
+  <a href="#p4" data-section="p4">IV — Entrar e Sair</a>
+  <a href="#exercicio" data-section="exercicio">Exercício</a>
+</nav>
+
+<!-- BANNER -->
+<header class="banner" role="banner">
+  <div style="max-width: 820px; margin: 0 auto;">
+    <p class="banner-meta">Elementos de Arquitetura — Material de Aula</p>
+    <h1>Oficina<br><em>Limiar</em></h1>
+    <div class="banner-info">
+      <div>
+        <p class="label">Tema</p>
+        <p class="value">O limiar como articulador da relação entre dentro e fora, espaço da rua e espaço doméstico</p>
+      </div>
+      <div>
+        <p class="label">Referência estruturante</p>
+        <p class="value">Janson, A.; Tigges, F., <em>Fundamental Concepts of Architecture</em>, Birkhäuser, 2014</p>
+      </div>
+      <div>
+        <p class="label">Estrutura</p>
+        <p class="value">4 partes + exercício analítico</p>
+      </div>
+      <div>
+        <p class="label">Sequência</p>
+        <p class="value">Aberturas → Fechamentos → Planos → <strong style="opacity:1">Limiar</strong></p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- SECTION I -->
+  <section id="p1" role="region" aria-labelledby="h2-p1">
+    <p class="section-label">I — Limiar</p>
+    <h2 id="h2-p1">O limiar como situação espacial</h2>
+
+    <p>Onde começa a casa? A pergunta parece simples, mas não tem uma resposta única. A casa pode começar na calçada, no portão, no tapete de entrada, na maçaneta. O início do espaço privado não coincide necessariamente com a fachada — e entre a rua e o interior existe uma zona que pertence a ambos, ou a nenhum. Essa zona é o <strong>limiar</strong>.</p>
+
+    <p>O limiar não é um elemento arquitetônico, mas uma <em>situação</em>: aquela em que se está simultaneamente dentro e fora, pertencendo e não pertencendo, chegando e já tendo chegado.</p>
+
+    <blockquote>
+      <p>"No limiar, não se está nem dentro nem fora. O limiar é simultaneamente um lugar, uma fronteira, uma transição e um obstáculo."</p>
+      <cite>Janson &amp; Tigges, Fundamental Concepts of Architecture, 2014</cite>
+    </blockquote>
+
+    <h3>Quatro dimensões do conceito</h3>
+
+    <div class="term-grid">
+      <div class="term-item">
+        <p class="term-name">Lugar</p>
+        <p class="term-desc">O limiar tem extensão — não é apenas uma linha, mas um espaço habitável, onde se está, se espera, se hesita.</p>
+      </div>
+      <div class="term-item">
+        <p class="term-name">Fronteira</p>
+        <p class="term-desc">Separa dois mundos. Mas a fronteira não é aquilo em que algo termina — é aquilo de onde algo começa a se fazer presente.</p>
+      </div>
+      <div class="term-item">
+        <p class="term-name">Transição</p>
+        <p class="term-desc">Vivido no movimento, na passagem. Atravessar um limiar é um ato: muda o comportamento, muda a relação do corpo com o espaço.</p>
+      </div>
+      <div class="term-item">
+        <p class="term-name">Obstáculo</p>
+        <p class="term-desc">O limiar oferece resistência. Essa resistência produz o valor do que está do outro lado. Quanto maior a dificuldade, maior o significado do espaço alcançado.</p>
+      </div>
+    </div>
+
+    <h3>Limiar e espessura</h3>
+
+    <p>Na sua forma mais simples, o limiar é apenas a soleira — uma faixa de madeira no piso que separa interior de exterior e exige atenção ao ser atravessada. Mas o conceito se expande: quando o limiar adquire volume e extensão, torna-se um <em>espaço limiar</em> — e é então que a arquitetura começa a trabalhar com toda a sua riqueza.</p>
+
+    <blockquote>
+      <p>"O elemento mais elementar do limiar é a soleira — a faixa de madeira ou pedra que marca a passagem entre dois mundos. Mas mesmo esse gesto mínimo já produz um efeito: ele exige atenção corporal, faz o corpo hesitar por um instante, e com isso torna consciente a passagem. O limiar sempre deixa uma marca na memória."</p>
+      <cite>Janson &amp; Tigges, Fundamental Concepts of Architecture, p. 331</cite>
+    </blockquote>
+
+    <p>O efeito essencial do limiar reside no <strong>jogo entre inibição e superação</strong>. Espaços alcançados pela superação forçada de um limiar são percebidos como tendo valor elevado. A arquitetura histórica explorou isso nos portais de igrejas, nos pórticos monumentais, nos vestíbulos — todos dispositivos de amplificação do significado do que vem depois.</p>
+
+    <blockquote>
+      <p>"O limiar é também um dispositivo social: ele regula o acesso e organiza as relações. Cruzar um limiar é sempre um ato negociado — nunca apenas um movimento do corpo, mas sempre também uma situação entre quem chega e quem recebe. A hospitalidade e o bloqueio são as duas faces de uma mesma condição liminar."</p>
+      <cite>Janson &amp; Tigges, Fundamental Concepts of Architecture, p. 331</cite>
+    </blockquote>
+
+  </section>
+
+  <!-- SECTION II -->
+  <section id="p2" role="region" aria-labelledby="h2-p2">
+    <p class="section-label">II — Dentro e Fora</p>
+    <h2 id="h2-p2">Interior e exterior — o alfa e o ômega da arquitetura</h2>
+
+    <blockquote>
+      <p>"Dentro e fora são o alfa e o ômega da arquitetura. Organizar sua relação e tornar sua interconexão experienciável em termos concretos por meio do projeto é a tarefa genuína da arquitetura."</p>
+      <cite>Janson &amp; Tigges, 2014</cite>
+    </blockquote>
+
+    <p>Interior e exterior sempre se condicionam mutuamente — uma enorme variedade de tipos de relação é possível, desde uma correspondência entre os dois, com apenas sutis desvios, até uma oposição dramática.</p>
+
+    <blockquote>
+      <p>"A pele do edifício é o seu limiar em escala total: ela negocia entre o mundo público da rua e o mundo privado do interior. Como todo limiar, pode ser espessa ou fina, convidativa ou fechada, transparente ou opaca — e cada uma dessas escolhas define o caráter da relação entre o edifício e a cidade."</p>
+      <cite>Janson &amp; Tigges, Fundamental Concepts of Architecture, p. 164</cite>
+    </blockquote>
+
+    <h3>Gradações entre interior e exterior</h3>
+
+    <p>A relação entre dentro e fora não é binária. A arquitetura opera com gradações: o exterior de um edifício pode "ler" o interior — ou deliberadamente ocultá-lo. Como disse Adolf Loos: <em>"A casa deve permanecer silenciosa por fora, revelando toda a sua riqueza apenas por dentro."</em> Mas um exterior que parece guardar um segredo não é simplesmente mudo — ele demonstra que tem algo a esconder, e essa ambivalência gera tensão.</p>
+
+    <p>Em sentido mais amplo, gradações entre dentro e fora são possíveis em que os exteriores de vários edifícios se combinam para formar um espaço interior externo — como uma praça — ou, inversamente, um espaço exterior é esculpido do interior de um edifício — como um pátio.</p>
+
+    <div class="concept-block">
+      <p class="concept-term">Interior / Exterior — campo semântico</p>
+      <p>O interior está associado à <strong>privacidade</strong>, à proteção, ao recolhimento; o exterior, à <strong>esfera pública</strong>, à disponibilidade, à exposição. No entanto, essa oposição é sempre relativa: estar fechado em um interior pode ser vivido como confinamento; estar exposto ao exterior pode ser experienciado como liberdade. A arquitetura define em que medida e de que forma esse confronto se dá.</p>
+    </div>
+
+    <blockquote>
+      <p>"Quando o exterior lê o interior, a arquitetura opera por correspondência; quando o esconde, opera por contraste. Mas nenhuma dessas posturas é neutra: ambas revelam uma decisão sobre o que o edifício deve comunicar ao mundo — sobre o quanto de si ele está disposto a mostrar."</p>
+      <cite>Janson &amp; Tigges, Fundamental Concepts of Architecture, p. 164</cite>
+    </blockquote>
+
+    <h3>Correspondência e contradição</h3>
+
+    <p>Robert Venturi identificou variantes de uma dupla casca: a primeira segue as condições do interior; a segunda, as do exterior. O invólucro externo pode, por sua vez, ser côncavo — delimitando um interior dentro de um espaço externo. Essa multiplicidade de inversões e sobreposições é um dos recursos mais potentes da concepção arquitetônica.</p>
+
+  </section>
+
+  <!-- SECTION III -->
+  <section id="p3" role="region" aria-labelledby="h2-p3">
+    <p class="section-label">III — Espaço Intermediário</p>
+    <h2 id="h2-p3">O entre — reciprocidade e tipos</h2>
+
+    <p>O limiar pode ser expandido de uma linha para um volume espacial. Quando isso ocorre, temos o <strong>espaço intermediário</strong>: o "entre" que ocupa a transição de um cômodo para o outro, pertencendo a nenhum deles — ou a ambos simultaneamente.</p>
+
+    <blockquote>
+      <p>"O espaço intermediário demonstra que as características de dentro e fora, corpo e espaço, fechamento e abertura, privado e público não precisam representar polaridades irreconciliáveis, mas que uma pode ser alcançada com a ajuda da outra através da 'reciprocidade'."</p>
+      <cite>Aldo van Eyck, apud Janson &amp; Tigges</cite>
+    </blockquote>
+
+    <blockquote>
+      <p><span class="quote-highlight">"Em sentido fundamental, a arquitetura é uma arte dos espaços intermediários."</span></p>
+      <cite>Janson &amp; Tigges, 2014</cite>
+    </blockquote>
+
+    <blockquote>
+      <p>"O alpendre é talvez o espaço intermediário mais universal: ele duplica a borda do edifício, criando uma faixa ao mesmo tempo protegida e aberta, doméstica e pública. Nele, a vida interior pode transbordar para o exterior sem expor-se completamente — e o visitante pode aproximar-se sem ainda ter chegado."</p>
+      <cite>Janson &amp; Tigges, Fundamental Concepts of Architecture, p. 168</cite>
+    </blockquote>
+
+    <h3>Tipologias do espaço intermediário</h3>
+
+    <ul class="typo-list">
+      <li>
+        <span class="typo-name">Varanda / Alpendre</span>
+        <span class="typo-desc">Extensão do interior para o exterior. O habitante ainda está "em casa" mas já está ao ar livre. Espaço de mediação entre a vida doméstica e a rua.</span>
+      </li>
+      <li>
+        <span class="typo-name">Loggia / Arcada</span>
+        <span class="typo-desc">Espaços ao mesmo tempo cobertos e abertos — protegidos, mas públicos. A arcada introjecta a cidade dentro do edifício.</span>
+      </li>
+      <li>
+        <span class="typo-name">Vestíbulo / Hall de entrada</span>
+        <span class="typo-desc">Lugar de chegada, de reorientação, de transição de comportamento. Retira-se o casaco, reconhece-se o espaço, prepara-se para o que vem depois.</span>
+      </li>
+      <li>
+        <span class="typo-name">Pátio / Átrio</span>
+        <span class="typo-desc">O exterior introvertido — o exterior que se torna interior. A rua dobrada para dentro.</span>
+      </li>
+      <li>
+        <span class="typo-name">Terraço / Sacada / Balcão</span>
+        <span class="typo-desc">Tentativas protegidas de emergência para o exterior — o interior que se projeta para fora.</span>
+      </li>
+      <li>
+        <span class="typo-name">Nicho / Embasamento / Marquise</span>
+        <span class="typo-desc">Espessura da fachada que cria pequenos espaços de transição, proteção e convite — "bolsos espaciais" entre o edifício e a cidade.</span>
+      </li>
+    </ul>
+
+    <blockquote>
+      <p>"O espaço intermediário tem sempre uma escala própria, que não é nem a do grande espaço de chegada nem a do espaço íntimo de destino. É essa escala intermediária que permite ao corpo orientar-se, reduzir a velocidade, preparar-se. Onde essa escala é suprimida, o limiar se torna apenas uma linha — e o espaço perde a capacidade de ser habitado na passagem."</p>
+      <cite>Janson &amp; Tigges, Fundamental Concepts of Architecture, p. 168</cite>
+    </blockquote>
+
+    <h3>O espaço intermediário em camadas</h3>
+
+    <p>Os atos de entrar e sair são articulados especialmente por meio de <em>sequências</em> de espaços intermediários, que impedem de "esbarrar" diretamente na porta e adentrar o edifício. Ao se aproximar de uma casa, por exemplo, o ato de entrada é contido por um segmento do espaço externo através de uma mudança de direção e "coletado" diante do edifício — talvez pela varredura de um muro acompanhante. Quintais da frente, jardins, às vezes separados por grades ou portões, fornecem pontos de parada iniciais. Alpendres, marquises e arcadas formam camadas espaciais que ainda se encontram do lado de fora, mas cujos telhados salientes oferecem abrigo.</p>
+
+    <div class="concept-block">
+      <p class="concept-term">Referência — Aldo van Eyck, Orfanato de Amsterdã (1955–60)</p>
+      <p>Sistema de limiares em cascata: cada espaço intermediário é um território com escala própria, articulando o individual e o coletivo. Van Eyck recusou a oposição entre dentro/fora, público/privado — e a substituiu por uma multiplicidade de situações de limiar que permitem que cada uma exista plenamente.</p>
+    </div>
+
+  </section>
+
+  <!-- SECTION IV -->
+  <section id="p4" role="region" aria-labelledby="h2-p4">
+    <p class="section-label">IV — Entrar e Sair</p>
+    <h2 id="h2-p4">Ingresso e saída como operações fundamentais</h2>
+
+    <blockquote>
+      <p>"Você sabe que está diante de arquitetura quando é possível entrar nela e sair dela, e quando essa possibilidade de entrar-e-depois-sair é capaz de alterar as circunstâncias."</p>
+      <cite>Dirk Baecker, apud Janson &amp; Tigges</cite>
+    </blockquote>
+
+    <blockquote>
+      <p>"A porta é o elemento arquitetônico que mais diretamente materializa o limiar. Quando aberta, convida; quando fechada, bloqueia; quando entreaberta, produz ambiguidade e tensão. A porta condensa em si todas as qualidades do limiar — lugar, fronteira, transição e obstáculo — em um único objeto."</p>
+      <cite>Janson &amp; Tigges, Fundamental Concepts of Architecture, p. 162</cite>
+    </blockquote>
+
+    <p>Entrar e sair são operações fundamentais da relação entre dentro e fora. Ao contrário das <em>vistas para dentro e para fora</em> e de outras <em>aberturas</em> que mantêm uma relação mais protegida e assegurada com o exterior, entrar e sair são operações ativas, com todas as consequências associadas de surpresa e risco.</p>
+
+    <h3>A dupla direcionalidade</h3>
+
+    <p>Entrar e sair não são operações simétricas nem equivalentes — elas estão implicadas com a ambivalência e o caráter contraditório dessas duas direções: dentro e fora novamente. Estão implicadas com um simbolismo de alcance frequentemente existencial. A dualidade é representada pelo deus romano de dupla face Janus — não apenas o deus das entradas e saídas, mas também dos começos e fins, chegadas e partidas, passado e futuro.</p>
+
+    <blockquote>
+      <p>"Ao entrar em um edifício, já somos afetados antes mesmo de cruzar sua soleira: a antecipação começa no momento em que o vemos de longe, quando percebemos sua entrada como destino. O ato de entrar é, portanto, uma experiência estendida no tempo e no espaço — não um ponto, mas um percurso com começo, tensão e resolução."</p>
+      <cite>Janson &amp; Tigges, Fundamental Concepts of Architecture, p. 162</cite>
+    </blockquote>
+
+    <h3>A entrada como antecipação</h3>
+
+    <p>Ao entrarmos em um edifício, ele já é capaz de nos transmitir um gostinho do caráter do interior — pode tanto atrair quanto intimidar. Certos elementos e processos arquitetônicos são especialmente característicos de uma entrada. Nos portais de igrejas medievais, a forma de funil funciona como elemento orientador para os que entram, anunciando o percurso processional que continua lá dentro. O pórtico com colunas é principalmente um gesto receptivo visivelmente grande para os que entram, mas ao mesmo tempo sinaliza a dignidade e o status do edifício.</p>
+
+    <h3>O lado de fora da entrada</h3>
+
+    <p>A entrada e a saída exibem dupla face também em relação às aparências estruturais. Ao entrar no edifício, percebemos a entrada como elemento-chave em relação à fachada como um todo — o que não ocorre a partir do interior. Uma saída carece do significado de uma entrada. Em estruturas enfaticamente abertas, como o Pavilhão de Barcelona de Mies van der Rohe, a tensão inerente a essa passagem entre zonas é virtualmente dissolvida — paredes individuais apenas insinuam a separação entre dentro e fora, e ao entrar, já nos encontramos saindo novamente.</p>
+
+    <div class="concept-block">
+      <p class="concept-term">Para observar</p>
+      <p>Nos espaços cotidianos que você atravessa — na cidade, no bairro, no caminho até a faculdade — <strong>onde você percebe a existência de um limiar?</strong> O que o produz? Uma soleira, um degrau, uma mudança de material, um portão entreaberto, uma sombra? O que muda em você ao atravessá-lo?</p>
+    </div>
+
+    <h3>Conexões com a sequência didática</h3>
+
+    <div class="seq-strip">
+      <span class="seq-item">Aberturas — os vãos pontuais</span>
+      <span class="seq-item">Fechamentos — o limite que possibilita o limiar</span>
+      <span class="seq-item">Planos — o chão, o teto e a cobertura do espaço de transição</span>
+      <span class="seq-item seq-current">Limiar — a situação espacial completa</span>
+    </div>
+
+    <p style="margin-top: 32px;">O limiar resulta da combinação de aberturas, fechamentos e planos em uma situação espacial completa — não é um elemento, mas a <em>qualidade</em> produzida pela relação entre eles. Essa é precisamente a passagem de pensar os elementos isoladamente para pensar o <strong>conjunto</strong> como produtor de experiência.</p>
+
+  </section>
+
+</main>
+
+<!-- EXERCISE -->
+<div id="exercicio">
+  <div class="ex-inner">
+    <p class="section-label">Exercício em Sala</p>
+    <h2>Leitura do limiar no projeto de referência</h2>
+
+    <p>Com base no projeto que você vem analisando ao longo do semestre, realize uma <strong>leitura crítica das condições de limiar</strong> por meio de três operações de representação encadeadas.</p>
+
+    <h3>01 — Planta do térreo esquemática</h3>
+
+    <ul class="ex-steps">
+      <li>
+        <span class="step-num">—</span>
+        <span>Desenhe de forma esquemática o <strong>plano do térreo</strong> do projeto, incluindo o entorno imediato — o lote, a calçada, a rua. Não é necessário precisão técnica: o que importa é que o desenho torne legível a relação entre espaço público e espaço construído.</span>
+      </li>
+      <li>
+        <span class="step-num">—</span>
+        <span><strong>Identifique e marque</strong> os espaços de limiar existentes na planta. Onde estão as zonas de transição? Quais têm espessura? Quais são apenas uma linha? Use grafismos, hachuras ou anotações para diferenciar o caráter de cada limiar encontrado.</span>
+      </li>
+    </ul>
+
+    <h3>02 — Corte de sequência espacial</h3>
+
+    <ul class="ex-steps">
+      <li>
+        <span class="step-num">—</span>
+        <span>Escolha uma linha de corte que atravesse o projeto <strong>da rua até o espaço mais interior</strong>. Não é necessariamente um corte arquitetônico preciso — é um <em>corte de sequência espacial</em>: interessa a sucessão de situações que o corpo atravessa, do público ao privado.</span>
+      </li>
+      <li>
+        <span class="step-num">—</span>
+        <span>Represente essa sequência de forma esquemática, incluindo o espaço da rua como ponto de partida. <strong>Identifique cada limiar</strong> ao longo do percurso e anote: o que muda em cada passagem? Há espessura? Há resistência? O que o limiar anuncia?</span>
+      </li>
+    </ul>
+
+    <h3>03 — Croquis e anotações de caráter</h3>
+
+    <ul class="ex-steps">
+      <li>
+        <span class="step-num">—</span>
+        <span>Escolha <strong>dois ou três limiares</strong> que considerar mais significativos no projeto. Para cada um, faça um croqui rápido — perspectivado, isométrico ou qualquer ponto de vista que revele a qualidade espacial da transição.</span>
+      </li>
+      <li>
+        <span class="step-num">—</span>
+        <span>Anote ao lado de cada croqui o <strong>caráter do limiar</strong>: é um limiar que convida ou que inibe? Que separa ou que medeia? Que tem espessura ou que é apenas um corte? Que anuncia o que vem depois ou que surpreende?</span>
+      </li>
+    </ul>
+
+    <div class="ex-entregavel">
+      <p class="label">Entregável — template do curso</p>
+      <p>Prancha no formato padrão da disciplina (dupla de A4, retrato, lado a lado), contendo os três momentos do exercício: planta esquemática do térreo com limiares identificados, corte de sequência espacial e croquis com anotações de caráter.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>PA1 — Projeto de Arquitetura 1 · FAU UFRJ · 3º Período · Alziro Carvalho Neto</p>
+  <p style="margin-top:6px;">Referência estruturante: Janson, A.; Tigges, F. <em>Fundamental Concepts of Architecture: The Vocabulary of Spatial Situations.</em> Basel: Birkhäuser, 2014. Verbetes: <em>Threshold</em> (p. 331); <em>Inside and outside</em> (p. 164); <em>Intermediate space</em> (p. 168); <em>Ingress and exit</em> (p. 162).</p>
+</footer>
+
+<script>
+  // Scroll-spy: highlight active nav link
+  const sections = ['p1', 'p2', 'p3', 'p4', 'exercicio'];
+  const navLinks = document.querySelectorAll('nav a[data-section]');
+
+  function updateNav() {
+    let current = sections[0];
+    const offset = 80;
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= offset) {
+        current = id;
+      }
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.dataset.section === current);
+    });
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+</script>
+
+</body>
+</html>
