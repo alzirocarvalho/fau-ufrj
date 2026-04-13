@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Martina Estudos — Geografia: Globalização</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d14;
+    --surface: #13131f;
+    --surface2: #1a1a2e;
+    --accent: #7c3aed;
+    --accent2: #a855f7;
+    --gold: #f59e0b;
+    --green: #10b981;
+    --red: #ef4444;
+    --text: #e8e8f0;
+    --muted: #7070a0;
+    --border: #2a2a45;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  /* ─── GLOW ORBS ─── */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.15;
+    animation: drift 20s ease-in-out infinite alternate;
+  }
+  .orb1 { width: 500px; height: 500px; background: var(--accent); top: -100px; left: -100px; }
+  .orb2 { width: 400px; height: 400px; background: #1d4ed8; bottom: 100px; right: -100px; animation-delay: -10s; }
+  @keyframes drift { from { transform: translate(0,0); } to { transform: translate(40px, 30px); } }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(13,13,20,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--accent2);
+    letter-spacing: -0.02em;
+    flex: 1;
+  }
+  .nav-links { display: flex; gap: 0.25rem; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--surface2); }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 6rem 2rem 4rem;
+    text-align: center;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    border: 1px solid var(--accent);
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    background: rgba(124,58,237,0.1);
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--accent2), #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s;
+    text-decoration: none;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(124,58,237,0.4); }
+  .btn-ghost { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto 4rem;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.25rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent2);
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+
+  /* ─── SECTION ─── */
+  .section {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem 5rem;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .section-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--accent), #1d4ed8);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .section-sub { font-size: 0.85rem; color: var(--muted); margin-top: 0.2rem; }
+
+  /* ─── TOPIC CARDS ─── */
+  .topic-grid { display: grid; gap: 1rem; }
+  .topic-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .topic-card:hover { border-color: var(--accent); }
+  .topic-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    gap: 1rem;
+  }
+  .topic-label {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .topic-emoji { font-size: 1.3rem; }
+  .topic-chevron {
+    color: var(--muted);
+    font-size: 0.9rem;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+  .topic-card.open .topic-chevron { transform: rotate(180deg); }
+  .topic-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .topic-card.open .topic-body { max-height: 2000px; }
+  .topic-content { padding: 0 1.5rem 1.5rem; }
+
+  .concept {
+    border-left: 3px solid var(--accent);
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    background: rgba(124,58,237,0.05);
+    border-radius: 0 8px 8px 0;
+  }
+  .concept-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--accent2);
+    margin-bottom: 0.35rem;
+  }
+  .concept-body { font-size: 0.9rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
+  .concept-body strong { color: var(--text); font-weight: 500; }
+
+  .tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: var(--surface2);
+  }
+
+  .fase-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-top: 0.5rem; }
+  @media(max-width: 600px) { .fase-grid { grid-template-columns: 1fr; } }
+  .fase-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .fase-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .fase-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; }
+  .fase-items { font-size: 0.82rem; color: var(--muted); line-height: 1.8; }
+
+  .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem; }
+  @media(max-width: 600px) { .pros-cons { grid-template-columns: 1fr; } }
+  .pros, .cons {
+    background: var(--surface2);
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .pros { border-top: 2px solid var(--green); }
+  .cons { border-top: 2px solid var(--red); }
+  .pros-title { color: var(--green); font-weight: 600; font-size: 0.85rem; margin-bottom: 0.5rem; }
+  .cons-title { color: var(--red); font-weight: 600; font-size: 0.85rem; margin-bottom: 0.5rem; }
+  .pros-list, .cons-list { list-style: none; font-size: 0.85rem; color: var(--muted); line-height: 1.9; }
+  .pros-list li::before { content: '+ '; color: var(--green); font-weight: 700; }
+  .cons-list li::before { content: '− '; color: var(--red); font-weight: 700; }
+
+  .faces-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 0.5rem; }
+  @media(max-width: 600px) { .faces-grid { grid-template-columns: 1fr; } }
+  .face-card {
+    background: var(--surface2);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .face-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .face-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.4rem; color: var(--accent2); }
+  .face-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+
+  /* ─── QUIZ ─── */
+  #quiz { scroll-margin-top: 4rem; }
+  .quiz-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .progress-bar {
+    flex: 1;
+    min-width: 200px;
+    height: 6px;
+    background: var(--surface2);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 999px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .quiz-counter { font-size: 0.85rem; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  .question-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    min-height: 200px;
+    display: none;
+    flex-direction: column;
+    gap: 1.5rem;
+    animation: fadeUp 0.4s ease;
+  }
+  .question-card.active { display: flex; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .q-category {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent2);
+  }
+  .q-text {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    font-weight: 400;
+  }
+  .q-options { display: flex; flex-direction: column; gap: 0.6rem; }
+  .q-opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    background: var(--surface2);
+    transition: all 0.2s;
+    text-align: left;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.5;
+  }
+  .q-opt:hover:not(:disabled) { border-color: var(--accent); background: rgba(124,58,237,0.1); }
+  .q-opt:disabled { cursor: default; }
+  .q-opt.correct { border-color: var(--green); background: rgba(16,185,129,0.1); color: var(--green); }
+  .q-opt.wrong { border-color: var(--red); background: rgba(239,68,68,0.1); color: var(--red); }
+  .q-opt.reveal { border-color: var(--green); background: rgba(16,185,129,0.06); }
+  .opt-letter {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .q-opt.correct .opt-letter { background: var(--green); color: #fff; }
+  .q-opt.wrong .opt-letter { background: var(--red); color: #fff; }
+
+  .q-explanation {
+    display: none;
+    background: rgba(124,58,237,0.08);
+    border: 1px solid rgba(124,58,237,0.25);
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .q-explanation.show { display: block; animation: fadeUp 0.3s ease; }
+  .q-explanation strong { color: var(--accent2); }
+
+  .q-actions { display: flex; justify-content: flex-end; }
+
+  /* ─── SCORE ─── */
+  .score-screen {
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    text-align: center;
+    animation: fadeUp 0.5s ease;
+  }
+  .score-screen.show { display: block; }
+  .score-big {
+    font-family: 'Syne', sans-serif;
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--accent2), #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+  .score-label { color: var(--muted); font-size: 1rem; margin-bottom: 2rem; }
+  .score-msg { font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem; }
+  .score-detail { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.7; }
+  .score-stars { font-size: 2rem; margin-bottom: 1.5rem; letter-spacing: 4px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.8;
+  }
+  footer a { color: var(--accent2); text-decoration: none; }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    max-width: 900px;
+    margin: 0 auto 4rem;
+    padding: 0 2rem;
+  }
+  .divider hr { border: none; border-top: 1px solid var(--border); }
+
+  /* RESPONSIVE */
+  @media(max-width: 600px) {
+    .stats-bar { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero { padding: 4rem 1.5rem 3rem; }
+    .section { padding: 0 1.5rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">✦ Martina Estudos</div>
+    <div class="nav-links">
+      <a href="#revisao" onclick="setActive(this)">Revisão</a>
+      <a href="#quiz" onclick="setActive(this)">Quiz</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">📚 Geografia · Prova</div>
+  <h1>Globalização &<br><span>Mundo em Redes</span></h1>
+  <p>Tudo que você precisa saber em um só lugar. Revise os conceitos, treine com o quiz e arraça na prova.</p>
+  <div class="hero-ctas">
+    <a href="#revisao" class="btn btn-primary">▸ Começar revisão</a>
+    <a href="#quiz" class="btn btn-ghost">⬡ Ir pro quiz</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-card">
+    <div class="stat-num">6</div>
+    <div class="stat-label">Temas de revisão</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">4</div>
+    <div class="stat-label">Fases da globalização</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">18</div>
+    <div class="stat-label">Perguntas no quiz</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ REVISÃO ═══════════════════════ -->
+<div class="section" id="revisao">
+  <div class="section-header">
+    <div class="section-icon">📖</div>
+    <div>
+      <div class="section-title">Revisão da Matéria</div>
+      <div class="section-sub">Clique em cada tema para expandir</div>
+    </div>
+  </div>
+
+  <div class="topic-grid">
+
+    <!-- TEMA 1 -->
+    <div class="topic-card" onclick="toggle(this)">
+      <div class="topic-header">
+        <div class="topic-label"><span class="topic-emoji">🌐</span> O que é Globalização?</div>
+        <div class="topic-chevron">▾</div>
+      </div>
+      <div class="topic-body"><div class="topic-content">
+        <div class="concept">
+          <div class="concept-title">Definição</div>
+          <div class="concept-body">A globalização é um <strong>processo de integração mundial</strong> que envolve a interdependência <strong>econômica, política, cultural, social e informacional</strong> entre os países. É impulsionada pelo avanço dos transportes e das telecomunicações.</div>
+        </div>
+        <div class="concept">
+          <div class="concept-title">"Diminuição" e "Aumento" do mundo</div>
+          <div class="concept-body">As distâncias <strong>diminuíram</strong> porque transportes mais rápidos encurtaram o tempo entre lugares. O mundo <strong>"aumentou"</strong> porque há mais informação disponível, mais conexões e mais lugares acessíveis — o mundo ficou mais complexo e interconectado.</div>
+        </div>
+        <div class="concept">
+          <div class="concept-title">Mundo em Redes</div>
+          <div class="concept-body">Vivemos num mundo organizado em <strong>redes</strong> — de comunicação, transporte, financeiras e produtivas — que conectam pessoas, empresas e países em tempo real, independente das fronteiras.</div>
+        </div>
+        <div class="tag-list">
+          <span class="tag">Integração mundial</span>
+          <span class="tag">Interdependência</span>
+          <span class="tag">Redes</span>
+          <span class="tag">Fluxos</span>
+          <span class="tag">Tecnologia</span>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- TEMA 2 -->
+    <div class="topic-card" onclick="toggle(this)">
+      <div class="topic-header">
+        <div class="topic-label"><span class="topic-emoji">🧠</span> As 3 Faces (Milton Santos)</div>
+        <div class="topic-chevron">▾</div>
+      </div>
+      <div class="topic-body"><div class="topic-content">
+        <p style="font-size:0.88rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Para o geógrafo brasileiro Milton Santos, a globalização pode ser analisada sob três perspectivas:</p>
+        <div class="faces-grid">
+          <div class="face-card">
+            <div class="face-icon">✨</div>
+            <div class="face-name">Fábula</div>
+            <div class="face-desc">Como <em>fazem a gente acreditar</em> que ela é — o lado bom, o "mundo maravilhoso" propagandeado pela mídia e pelas empresas.</div>
+          </div>
+          <div class="face-card">
+            <div class="face-icon">⚡</div>
+            <div class="face-name">Perversidade</div>
+            <div class="face-desc">Como ela <em>realmente é</em> — desigual e cruel. Aumenta a pobreza, a exclusão social e a exploração dos países periféricos.</div>
+          </div>
+          <div class="face-card">
+            <div class="face-icon">🌱</div>
+            <div class="face-name">Possibilidade</div>
+            <div class="face-desc">Como ela <em>poderia ser</em> — mais justa, igualitária e humanizada, se as relações de poder fossem reorganizadas.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- TEMA 3 -->
+    <div class="topic-card" onclick="toggle(this)">
+      <div class="topic-header">
+        <div class="topic-label"><span class="topic-emoji">📅</span> As 4 Fases da Globalização</div>
+        <div class="topic-chevron">▾</div>
+      </div>
+      <div class="topic-body"><div class="topic-content">
+        <div class="fase-grid">
+          <div class="fase-card">
+            <div class="fase-num">1ª Fase</div>
+            <div class="fase-name">Séculos XV – XVIII</div>
+            <div class="fase-items">
+              → Grandes Navegações<br>
+              → Comércio Triangular<br>
+              → Mercantilismo
+            </div>
+          </div>
+          <div class="fase-card">
+            <div class="fase-num">2ª Fase</div>
+            <div class="fase-name">Séc. XVIII – XIX</div>
+            <div class="fase-items">
+              → 1ª Revolução Industrial<br>
+              → Liberalismo<br>
+              → Fonte: Carvão Mineral<br>
+              → Crescimento das cidades
+            </div>
+          </div>
+          <div class="fase-card">
+            <div class="fase-num">3ª Fase</div>
+            <div class="fase-name">Séc. XIX – XX</div>
+            <div class="fase-items">
+              → 2ª Revolução Industrial<br>
+              → Surgimento das multinacionais<br>
+              → Expansão imperialista
+            </div>
+          </div>
+          <div class="fase-card">
+            <div class="fase-num">4ª Fase</div>
+            <div class="fase-name">A partir de 1960</div>
+            <div class="fase-items">
+              → 3ª Revolução Industrial<br>
+              → Tecnologias da informação<br>
+              → Bigtechs<br>
+              → Economia digital
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- TEMA 4 -->
+    <div class="topic-card" onclick="toggle(this)">
+      <div class="topic-header">
+        <div class="topic-label"><span class="topic-emoji">➕➖</span> Pontos Positivos e Negativos</div>
+        <div class="topic-chevron">▾</div>
+      </div>
+      <div class="topic-body"><div class="topic-content">
+        <div class="pros-cons">
+          <div class="pros">
+            <div class="pros-title">✅ Pontos Positivos</div>
+            <ul class="pros-list">
+              <li>Avanços tecnológicos</li>
+              <li>Acesso à informação</li>
+              <li>Produtos mais baratos</li>
+              <li>Integração cultural</li>
+              <li>Transporte mais rápido</li>
+            </ul>
+          </div>
+          <div class="cons">
+            <div class="cons-title">❌ Pontos Negativos</div>
+            <ul class="cons-list">
+              <li>Aumento das desigualdades</li>
+              <li>Padronização cultural</li>
+              <li>Problemas ambientais</li>
+              <li>Exploração da mão de obra</li>
+            </ul>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- TEMA 5 -->
+    <div class="topic-card" onclick="toggle(this)">
+      <div class="topic-header">
+        <div class="topic-label"><span class="topic-emoji">🏭</span> DIT — Divisão Internacional do Trabalho</div>
+        <div class="topic-chevron">▾</div>
+      </div>
+      <div class="topic-body"><div class="topic-content">
+        <div class="concept">
+          <div class="concept-title">O que é a DIT?</div>
+          <div class="concept-body">É a divisão das <strong>etapas de produção</strong> entre países diferentes. Cada país ou região se especializa em uma parte do processo produtivo — geralmente os países ricos ficam com a <strong>tecnologia e gestão</strong>, enquanto os países pobres ficam com a <strong>produção e mão de obra barata</strong>.</div>
+        </div>
+        <div class="concept">
+          <div class="concept-title">DIT na fase atual do capitalismo</div>
+          <div class="concept-body">As <strong>multinacionais</strong> distribuem suas fábricas pelo mundo buscando mão de obra mais barata e menos regulação trabalhista. Países em desenvolvimento atraem investimento, mas frequentemente sofrem com <strong>baixos salários, exploração trabalhista e degradação ambiental</strong>.</div>
+        </div>
+        <div class="concept">
+          <div class="concept-title">Papel das Multinacionais</div>
+          <div class="concept-body">As empresas multinacionais são os <strong>principais agentes da DIT</strong>. Elas fragmentam sua cadeia produtiva globalmente para maximizar lucros, com sede nos países centrais e produção nos países periféricos.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- TEMA 6 -->
+    <div class="topic-card" onclick="toggle(this)">
+      <div class="topic-header">
+        <div class="topic-label"><span class="topic-emoji">🔑</span> Palavras-Chave</div>
+        <div class="topic-chevron">▾</div>
+      </div>
+      <div class="topic-body"><div class="topic-content">
+        <div class="concept">
+          <div class="concept-title">Globalização × Ocidentalização</div>
+          <div class="concept-body">A globalização frequentemente espalha valores, padrões de consumo e cultura dos países ocidentais (especialmente EUA) — isso é chamado de <strong>ocidentalização</strong>. É uma das formas de padronização cultural.</div>
+        </div>
+        <div class="concept">
+          <div class="concept-title">Fluxos e Redes</div>
+          <div class="concept-body"><strong>Fluxos</strong> são os movimentos de pessoas, capitais, mercadorias e informações pelo mundo. <strong>Redes</strong> são as estruturas que permitem esses fluxos — como internet, estradas, rotas aéreas e sistemas financeiros.</div>
+        </div>
+        <div class="concept">
+          <div class="concept-title">Desigualdade e Capitalismo</div>
+          <div class="concept-body">O capitalismo globalizado concentra riqueza nos países centrais e nas elites, enquanto mantém a <strong>periferia dependente</strong>. Isso aprofunda a desigualdade social dentro dos países e entre as nações.</div>
+        </div>
+        <div class="tag-list">
+          <span class="tag">Multinacionais</span>
+          <span class="tag">Fluxos e redes</span>
+          <span class="tag">DIT</span>
+          <span class="tag">Desigualdade</span>
+          <span class="tag">Capitalismo</span>
+          <span class="tag">Ocidentalização</span>
+        </div>
+      </div></div>
+    </div>
+
+  </div><!-- /topic-grid -->
+</div>
+
+<div class="divider"><hr></div>
+
+<!-- ═══════════════════════ QUIZ ═══════════════════════ -->
+<div class="section" id="quiz">
+  <div class="section-header">
+    <div class="section-icon">⬡</div>
+    <div>
+      <div class="section-title">Quiz de Revisão</div>
+      <div class="section-sub">18 perguntas · Escolha múltipla com explicação</div>
+    </div>
+  </div>
+
+  <div class="quiz-controls">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="quiz-counter" id="quizCounter">0 / 18</div>
+  </div>
+
+  <div id="quizCards"></div>
+  <div class="score-screen" id="scoreScreen"></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  Feito com 💜 para a Martina arrasar na prova<br>
+  <span style="color:var(--border)">·</span> Geografia: Globalização e DIT <span style="color:var(--border)">·</span>
+</footer>
+
+<script>
+// ─── TOGGLE ───
+function toggle(card) {
+  card.classList.toggle('open');
+}
+
+// ─── NAV ACTIVE ───
+function setActive(el) {
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ─── QUIZ DATA ───
+const questions = [
+  {
+    cat: "O que é Globalização?",
+    q: "O que melhor define o conceito de globalização?",
+    opts: [
+      "Um processo exclusivamente econômico de abertura de mercados entre países ricos.",
+      "Um processo de integração mundial que abrange dimensões econômicas, políticas, culturais, sociais e informacionais.",
+      "A dominação cultural dos países pobres pelos países ricos.",
+      "A criação de um governo mundial único para administrar os países."
+    ],
+    correct: 1,
+    exp: "<strong>Globalização</strong> é um processo amplo de integração e interdependência mundial. Ela não é apenas econômica — envolve fluxos culturais, políticos, sociais e de informação entre todos os países."
+  },
+  {
+    cat: "O que é Globalização?",
+    q: "Por que afirmamos que a globalização 'diminuiu' as distâncias entre os lugares?",
+    opts: [
+      "Porque os países ficaram geograficamente mais próximos.",
+      "Porque os transportes e as telecomunicações reduziram o tempo necessário para conectar pessoas e lugares.",
+      "Porque as fronteiras internacionais foram extintas.",
+      "Porque todos os países passaram a ter o mesmo fuso horário."
+    ],
+    correct: 1,
+    exp: "A 'diminuição' das distâncias é <strong>metafórica</strong>: o avanço dos transportes (aviões, navios) e das telecomunicações (internet, celular) reduziu o tempo e o custo de se conectar a qualquer lugar do mundo."
+  },
+  {
+    cat: "O que é Globalização?",
+    q: "O que significa dizer que vivemos num 'mundo em redes'?",
+    opts: [
+      "Que toda a população tem acesso à internet.",
+      "Que o mundo é organizado por conexões entre pessoas, empresas e países que funcionam de forma integrada e simultânea.",
+      "Que os países ricos controlam todos os fluxos econômicos globais.",
+      "Que apenas as grandes cidades estão conectadas entre si."
+    ],
+    correct: 1,
+    exp: "O conceito de <strong>mundo em redes</strong> se refere à organização do espaço global por meio de conexões — de comunicação, financeiras, produtivas e de transporte — que ligam atores em diferentes escalas simultaneamente."
+  },
+  {
+    cat: "As 3 Faces (Milton Santos)",
+    q: "Para Milton Santos, qual das três faces da globalização representa como ela 'realmente é'?",
+    opts: [
+      "A Fábula",
+      "A Possibilidade",
+      "A Perversidade",
+      "A Integração"
+    ],
+    correct: 2,
+    exp: "A <strong>Perversidade</strong> é a face que mostra a globalização como ela de fato funciona: desigual e cruel, concentrando riqueza, aprofundando a pobreza e explorando os países periféricos."
+  },
+  {
+    cat: "As 3 Faces (Milton Santos)",
+    q: "A 'Fábula' da globalização, segundo Milton Santos, corresponde a:",
+    opts: [
+      "A versão crítica e realista do processo globalizador.",
+      "A imagem positiva e idealizada propagandeada pela mídia e pelas empresas.",
+      "Uma proposta de globalização mais justa e igualitária.",
+      "A perspectiva dos países em desenvolvimento sobre o processo."
+    ],
+    correct: 1,
+    exp: "A <strong>Fábula</strong> é a narrativa vendida ao público — a globalização como 'aldeia global', cheia de oportunidades e progresso para todos. É a versão <em>como fazem a gente acreditar</em> que ela é."
+  },
+  {
+    cat: "As 3 Faces (Milton Santos)",
+    q: "A face da 'Possibilidade' na análise de Milton Santos representa:",
+    opts: [
+      "Como a globalização funciona atualmente.",
+      "O passado antes da globalização.",
+      "Uma globalização alternativa, mais justa e igualitária, que poderia existir.",
+      "A expansão das multinacionais pelo mundo."
+    ],
+    correct: 2,
+    exp: "A <strong>Possibilidade</strong> é o horizonte utópico: uma globalização que <em>poderia ser</em> — justa, solidária e igualitária — se as estruturas de poder fossem reorganizadas em favor das pessoas."
+  },
+  {
+    cat: "As 4 Fases",
+    q: "Quais características marcaram a 1ª fase da globalização (séculos XV–XVIII)?",
+    opts: [
+      "Revolução industrial, liberalismo e crescimento das cidades.",
+      "Grandes navegações, comércio triangular e mercantilismo.",
+      "Surgimento das multinacionais e expansão imperialista.",
+      "Tecnologias da informação e economia digital."
+    ],
+    correct: 1,
+    exp: "A <strong>1ª fase</strong> é marcada pelas Grandes Navegações europeias, pelo comércio triangular (Europa, África, Américas) e pelo sistema econômico mercantilista, que buscava acúmulo de metais preciosos."
+  },
+  {
+    cat: "As 4 Fases",
+    q: "A 2ª fase da globalização (sécs. XVIII–XIX) está associada a qual revolução e fonte de energia?",
+    opts: [
+      "3ª Revolução Industrial e petróleo.",
+      "2ª Revolução Industrial e energia elétrica.",
+      "1ª Revolução Industrial e carvão mineral.",
+      "Revolução Verde e energia solar."
+    ],
+    correct: 2,
+    exp: "A <strong>2ª fase</strong> coincide com a 1ª Revolução Industrial, que teve o <strong>carvão mineral</strong> como principal fonte de energia. É também o período do liberalismo econômico e do crescimento acelerado das cidades."
+  },
+  {
+    cat: "As 4 Fases",
+    q: "O surgimento das empresas multinacionais e a expansão imperialista são características de qual fase?",
+    opts: [
+      "1ª Fase (séculos XV–XVIII)",
+      "2ª Fase (sécs. XVIII–XIX)",
+      "3ª Fase (sécs. XIX–XX)",
+      "4ª Fase (a partir de 1960)"
+    ],
+    correct: 2,
+    exp: "A <strong>3ª fase</strong> (2ª Revolução Industrial) é quando surgem as <strong>multinacionais</strong> e os países industrializados expandem seu domínio imperialista sobre a África, Ásia e América Latina."
+  },
+  {
+    cat: "As 4 Fases",
+    q: "O que são Bigtechs e em qual fase da globalização elas surgem?",
+    opts: [
+      "Empresas de mineração da 2ª fase.",
+      "Gigantes tecnológicas (como Google, Amazon, Meta) que dominam a economia digital da 4ª fase.",
+      "Multinacionais industriais da 3ª fase.",
+      "Navios de grande porte usados nas Grandes Navegações."
+    ],
+    correct: 1,
+    exp: "As <strong>Bigtechs</strong> são as grandes corporações de tecnologia que dominam a economia digital global. Elas surgem e se consolidam na <strong>4ª fase</strong>, marcada pela 3ª Revolução Industrial e pelas tecnologias da informação."
+  },
+  {
+    cat: "Pontos Positivos e Negativos",
+    q: "Qual das opções abaixo representa um ponto NEGATIVO da globalização?",
+    opts: [
+      "Acesso a produtos mais baratos.",
+      "Integração cultural entre os povos.",
+      "Padronização cultural e perda de identidades locais.",
+      "Avanços tecnológicos no campo da saúde."
+    ],
+    correct: 2,
+    exp: "A <strong>padronização cultural</strong> é um dos efeitos negativos: a cultura ocidental (especialmente americana) se impõe globalmente, ameaçando identidades, línguas e tradições locais — processo chamado de <em>ocidentalização</em>."
+  },
+  {
+    cat: "Pontos Positivos e Negativos",
+    q: "Por que a globalização pode aumentar as desigualdades dentro de um mesmo país?",
+    opts: [
+      "Porque ela distribui igualmente os benefícios entre todas as regiões.",
+      "Porque os ganhos se concentram nas regiões e grupos mais inseridos no mercado global, aprofundando diferenças internas.",
+      "Porque ela proíbe a exportação de produtos nacionais.",
+      "Porque ela eleva os impostos de todos os trabalhadores."
+    ],
+    correct: 1,
+    exp: "A globalização beneficia principalmente as regiões e grupos já conectados ao mercado global. Regiões periféricas dentro de um mesmo país ficam para trás, <strong>ampliando a desigualdade regional e social interna</strong>."
+  },
+  {
+    cat: "DIT",
+    q: "O que é a Divisão Internacional do Trabalho (DIT)?",
+    opts: [
+      "Um tratado internacional que garante direitos iguais aos trabalhadores de todos os países.",
+      "A organização das etapas produtivas entre países, onde cada um se especializa em uma função dentro da cadeia global.",
+      "A divisão dos empregos formais e informais dentro de um mesmo país.",
+      "Um sistema que proíbe a importação de produtos industrializados."
+    ],
+    correct: 1,
+    exp: "A <strong>DIT</strong> é a forma como a produção global é distribuída: países centrais ficam com as etapas mais lucrativas (pesquisa, tecnologia, design), enquanto os periféricos executam a produção com mão de obra barata."
+  },
+  {
+    cat: "DIT",
+    q: "Na fase atual do capitalismo globalizado, qual é o papel típico dos países em desenvolvimento na DIT?",
+    opts: [
+      "Centros de pesquisa e inovação tecnológica.",
+      "Sede das principais multinacionais globais.",
+      "Fornecedores de mão de obra barata e matérias-primas para as multinacionais.",
+      "Reguladores dos fluxos financeiros internacionais."
+    ],
+    correct: 2,
+    exp: "Os países em desenvolvimento geralmente ocupam a <strong>periferia da DIT</strong>: atraem fábricas das multinacionais por oferecerem mão de obra mais barata, menos regulação trabalhista e abundância de recursos naturais."
+  },
+  {
+    cat: "DIT",
+    q: "Por que as multinacionais são consideradas os principais agentes da DIT?",
+    opts: [
+      "Porque elas operam exclusivamente em seus países de origem.",
+      "Porque fragmentam sua cadeia produtiva globalmente para maximizar lucros, instalando etapas em países mais vantajosos.",
+      "Porque financiam os governos dos países pobres.",
+      "Porque são responsáveis por criar empregos igualitários em todos os países."
+    ],
+    correct: 1,
+    exp: "As <strong>multinacionais</strong> distribuem etapas de produção (design, fabricação, montagem, distribuição) em diferentes países buscando reduzir custos — sendo assim os principais operadores da DIT no capitalismo contemporâneo."
+  },
+  {
+    cat: "Palavras-Chave",
+    q: "O que é 'ocidentalização' no contexto da globalização?",
+    opts: [
+      "A migração em massa de populações para os países do oeste europeu.",
+      "A imposição de valores, costumes e padrões de consumo ocidentais (especialmente americanos) sobre outras culturas.",
+      "O processo de industrialização dos países da América Latina.",
+      "A criação de blocos econômicos entre países do hemisfério oeste."
+    ],
+    correct: 1,
+    exp: "A <strong>ocidentalização</strong> é a disseminação — muitas vezes impositiva — da cultura, valores e padrões de consumo dos países ocidentais (EUA principalmente) para o restante do mundo, através da globalização."
+  },
+  {
+    cat: "Palavras-Chave",
+    q: "Qual é a diferença entre 'fluxos' e 'redes' na geografia da globalização?",
+    opts: [
+      "Fluxos são estáticos; redes são dinâmicas.",
+      "Fluxos referem-se aos movimentos (de pessoas, capital, informação); redes são as estruturas que possibilitam esses movimentos.",
+      "Fluxos são exclusivamente financeiros; redes são exclusivamente digitais.",
+      "São sinônimos e podem ser usados de forma intercambiável."
+    ],
+    correct: 1,
+    exp: "<strong>Fluxos</strong> são os movimentos em si (de mercadorias, capitais, informações, pessoas). <strong>Redes</strong> são as infraestruturas que sustentam esses fluxos — internet, rotas aéreas, sistemas bancários, rodovias."
+  },
+  {
+    cat: "Palavras-Chave",
+    q: "Como o capitalismo globalizado se relaciona com o aumento da desigualdade social e econômica?",
+    opts: [
+      "O capitalismo globalizado distribui a riqueza de forma mais igualitária entre os países.",
+      "A concentração de capital nas empresas e países centrais aprofunda a dependência e a pobreza nos países periféricos.",
+      "O capitalismo globalizado elimina as diferenças de classe ao criar empregos em todos os países.",
+      "A desigualdade diminuiu significativamente desde o início da globalização."
+    ],
+    correct: 1,
+    exp: "O capitalismo globalizado <strong>concentra riqueza</strong> nos países e grupos já inseridos no topo da cadeia produtiva, enquanto mantém os países periféricos em posição de dependência — aprofundando tanto a desigualdade entre nações quanto dentro delas."
+  }
+];
+
+// ─── QUIZ ENGINE ───
+let current = 0;
+let score = 0;
+let answered = new Array(questions.length).fill(false);
+
+function renderQuiz() {
+  const container = document.getElementById('quizCards');
+  container.innerHTML = '';
+  questions.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'question-card' + (i === 0 ? ' active' : '');
+    card.id = 'q' + i;
+    card.innerHTML = `
+      <div class="q-category">${q.cat}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-options">
+        ${q.opts.map((opt, j) => `
+          <button class="q-opt" onclick="answer(${i}, ${j})" id="opt-${i}-${j}">
+            <span class="opt-letter">${'ABCD'[j]}</span>
+            <span>${opt}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="q-explanation" id="exp-${i}">💡 ${q.exp}</div>
+      <div class="q-actions">
+        <button class="btn btn-primary" onclick="next(${i})" id="next-${i}" style="display:none">
+          ${i < questions.length - 1 ? 'Próxima →' : 'Ver resultado 🎯'}
+        </button>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+  updateProgress();
+}
+
+function answer(qi, oi) {
+  if (answered[qi]) return;
+  answered[qi] = true;
+  const q = questions[qi];
+  const opts = document.querySelectorAll(`#q${qi} .q-opt`);
+  opts.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.correct) btn.classList.add('correct');
+    else if (i === oi && i !== q.correct) btn.classList.add('wrong');
+    else if (i !== q.correct) btn.classList.add('reveal');
+    const letter = btn.querySelector('.opt-letter');
+    if (i === q.correct) letter.textContent = '✓';
+    else if (i === oi && i !== q.correct) letter.textContent = '✗';
+  });
+  if (oi === q.correct) score++;
+  document.getElementById(`exp-${qi}`).classList.add('show');
+  document.getElementById(`next-${qi}`).style.display = 'inline-flex';
+  updateProgress();
+}
+
+function next(qi) {
+  document.getElementById(`q${qi}`).classList.remove('active');
+  if (qi < questions.length - 1) {
+    current = qi + 1;
+    document.getElementById(`q${current}`).classList.add('active');
+    document.getElementById(`q${current}`).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    updateProgress();
+  } else {
+    showScore();
+  }
+}
+
+function updateProgress() {
+  const done = answered.filter(Boolean).length;
+  document.getElementById('quizCounter').textContent = `${done} / ${questions.length}`;
+  document.getElementById('progressFill').style.width = `${(done / questions.length) * 100}%`;
+}
+
+function showScore() {
+  document.querySelectorAll('.question-card').forEach(c => c.style.display = 'none');
+  const pct = Math.round((score / questions.length) * 100);
+  let stars = '⭐⭐⭐⭐⭐';
+  let msg = '';
+  let detail = '';
+  if (pct >= 90) {
+    stars = '⭐⭐⭐⭐⭐';
+    msg = 'INCRÍVEL! Você mandou muito bem! 🎉';
+    detail = 'Você dominou o conteúdo de Globalização e DIT. Pode ir pra prova com confiança total!';
+  } else if (pct >= 70) {
+    stars = '⭐⭐⭐⭐';
+    msg = 'Muito bom! Tá quase lá! 💪';
+    detail = 'Boa performance! Revise os temas onde errou e você vai arrasar na prova.';
+  } else if (pct >= 50) {
+    stars = '⭐⭐⭐';
+    msg = 'Bom começo! Continua estudando 📚';
+    detail = 'Você pegou os conceitos principais, mas vale revisar as fases e a DIT com mais atenção.';
+  } else {
+    stars = '⭐⭐';
+    msg = 'Não desanima! Revisa e tenta de novo 🔥';
+    detail = 'Volte para a seção de revisão, releia os conceitos e refaça o quiz. Você consegue!';
+  }
+  const screen = document.getElementById('scoreScreen');
+  screen.innerHTML = `
+    <div class="score-stars">${stars}</div>
+    <div class="score-big">${pct}%</div>
+    <div class="score-label">${score} de ${questions.length} corretas</div>
+    <div class="score-msg">${msg}</div>
+    <div class="score-detail">${detail}</div>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="restartQuiz()">🔁 Refazer quiz</button>
+      <a href="#revisao" class="btn btn-ghost">📖 Rever matéria</a>
+    </div>
+  `;
+  screen.classList.add('show');
+  screen.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function restartQuiz() {
+  score = 0;
+  current = 0;
+  answered = new Array(questions.length).fill(false);
+  document.getElementById('scoreScreen').classList.remove('show');
+  document.querySelectorAll('.question-card').forEach(c => c.style.display = '');
+  renderQuiz();
+  document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ─── INIT ───
+renderQuiz();
+</script>
+</body>
+</html>
